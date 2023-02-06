@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom"
 
-function Card ({ recipe }) {
+function RecipeCard ({ data }) {
 
-    const { name, instructions, ingredients, image_url, hours, chef_id, rating, id } = recipe
+    const { name, instructions, ingredients, image_url, hours, chef_id, rating, id } = data
 
     return (
         <div className="card">
@@ -19,4 +19,4 @@ function Card ({ recipe }) {
     )
 }
 
-export default Card;
+export default RecipeCard;

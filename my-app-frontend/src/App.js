@@ -9,7 +9,14 @@ import NewCardForm from "./components/NewCardForm";
 
 function App() {
   const [recipes, setRecipes] = useState([])
+  const [chefs, setChefs] = useState([])
   const [selectedType, setSelectedType] = useState('all')
+
+  useEffect(() => {
+    fetch("http://localhost:9292/chefs")
+    .then((res) => res.json())
+    .then((chefData) => setChefs(chefData));
+  }, [])
 
   useEffect(() => {
     fetch("http://localhost:9292/recipes")
@@ -29,9 +36,10 @@ function App() {
             <Home/>
         </Route>
         <Route exact path="/recipes">
-            <DisplayCards selectedType={selectedType} setSelectedType={setSelectedType} recipes={recipes}/>
+            <DisplayCards inRecipes={true} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipes}/>
         </Route>
         <Route exact path="/chefs">
+            <DisplayCards inRecipes={false} collectionData={chefs}/>
         </Route>
         <Route exact path="/chefs/:id">
         </Route>

@@ -1,19 +1,32 @@
 import React from "react";
-import Card from './Card.js'
+import RecipeCard from './RecipeCard.js'
+import ChefCard from './ChefCard.js'
 import Filter from './Filter.js'
 
 
-function DisplayCards ({ recipes, selectedType, setSelectedType }) {
+function DisplayCards ({ inRecipes, collectionData, selectedType, setSelectedType }) {
     return (
         <div>
-            <Filter selectedType={selectedType} setSelectedType={setSelectedType}/>
-            <div className="cards-container">
-                {recipes.map(recipe => {
+            {inRecipes ? 
+            <>
+                <Filter selectedType={selectedType} setSelectedType={setSelectedType}/>
+                <div className="cards-container">
+                    {collectionData.map(data => {
                     return (
-                        <Card key={recipe.id} recipe={recipe}/>
+                        <RecipeCard key={data.id} data={data}/>
                     )
                 })}
-            </div>
+                </div>
+            </> :
+                <div className="cards-container">
+                {collectionData.map(data => {
+                return (
+                    <ChefCard key={data.id} data={data}/>
+                )
+                })}
+                </div>
+            }
+            
         </div>
     )
 }
