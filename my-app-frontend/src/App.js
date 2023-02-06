@@ -36,15 +36,16 @@ function App() {
             <Home/>
         </Route>
         <Route exact path="/recipes">
-            <DisplayCards inRecipes={true} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipes}/>
+            <DisplayCards inRecipes={true} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipes} chefs={chefs}/>
         </Route>
         <Route exact path="/chefs">
             <DisplayCards inRecipes={false} collectionData={chefs}/>
         </Route>
         <Route exact path="/chefs/:id">
+          <CardDetails isRecipe={false} dataForDetails={chefs} />
         </Route>
         <Route exact path="/recipes/:id">
-          <CardDetails recipes={recipes} />
+          <CardDetails isRecipe={true} dataForDetails={recipes} />
         </Route>
         <Route exact path="/new">
           <NewCardForm onSubmit={handleSubmitCard}/>

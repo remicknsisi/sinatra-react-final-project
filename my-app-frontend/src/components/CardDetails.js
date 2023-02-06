@@ -1,20 +1,45 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-function CardDetails ({ recipes }) {
+function CardDetails ({ dataForDetails, isRecipe }) {
     const { id } = useParams()
-    const recipeDetails = recipes.find(recipe => recipe.id == id)
-    console.log(recipeDetails)
+    const itemOfFocus = dataForDetails.find(item => item.id == id)
+
+    function handleEditRecipe(){
+        fetch(`http://localhost:9292/recipes/${id}`, {
+            method: 'PATCH',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+
+            })
+        })
+        .then(res => res.json())
+        .then(updatedRecipe => console.log(updatedRecipe))
+    }
 
     return (
         <div className="card-details">
-            Details here
-            <p>{recipeDetails.name}</p>
-            <p>{recipeDetails.instructions}</p>
-            <p>{recipeDetails.hours}</p>
-            <p>{recipeDetails.ingredients}</p>
-            <p>{recipeDetails.rating}</p>
-            include chef
+            {isRecipe ? 
+            <> 
+                <h3>{itemOfFocus.name}</h3>
+                <img className="card-img" src={itemOfFocus.image_url}></img>
+                <br></br>
+                <p>Hours to Prepare: {itemOfFocus.hours}</p>
+                Ingredients:<p>{itemOfFocus.ingredients}</p>
+                Instructions:<p>{itemOfFocus.instructions}</p>
+                <p>Rating: {itemOfFocus.rating}</p>
+                <button onClick={handleEditRecipe}>Edit Recipe</button>
+            </>
+            :
+            <>
+                <h3>{itemOfFocus.first_name} {itemOfFocus.last_name}</h3>
+                <img className="card-img" src={itemOfFocus.image_url}></img>
+                <br></br>
+                <p>Age: {itemOfFocus.age}</p>
+                <p>All Recipes and Ratings:</p>
+                <button>Edit Chef</button>
+            </>
+            }
         </div>
     )
 }
