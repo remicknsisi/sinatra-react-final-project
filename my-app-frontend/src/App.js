@@ -29,7 +29,7 @@ function App() {
         <Route exact path="/chefs/:id">
         </Route>
         <Route exact path="/recipes/:id">
-          <CardDetails/>
+          <CardDetails recipes={recipes} />
         </Route>
       </Switch>
     </div>
