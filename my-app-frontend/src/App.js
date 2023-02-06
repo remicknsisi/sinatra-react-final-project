@@ -9,6 +9,7 @@ import NewCardForm from "./components/NewCardForm";
 
 function App() {
   const [recipes, setRecipes] = useState([])
+  const [selectedType, setSelectedType] = useState('all')
 
   useEffect(() => {
     fetch("http://localhost:9292/recipes")
@@ -28,7 +29,7 @@ function App() {
             <Home/>
         </Route>
         <Route exact path="/recipes">
-            <DisplayCards recipes={recipes}/>
+            <DisplayCards selectedType={selectedType} setSelectedType={setSelectedType} recipes={recipes}/>
         </Route>
         <Route exact path="/chefs">
         </Route>
