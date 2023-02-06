@@ -3,7 +3,7 @@ import { Route, Switch, useHistory } from "react-router-dom";
 import NavBar from "./components/NavBar.js";
 import Home from "./components/Home.js"
 import DisplayCards from "./components/DisplayCards.js";
-
+import CardDetails from "./components/CardDetails.js";
 
 function App() {
   const [recipes, setRecipes] = useState([])
@@ -13,9 +13,6 @@ function App() {
     .then((res) => res.json())
     .then((recipeData) => setRecipes(recipeData));
   }, [])
-
-  console.log(recipes)
-
 
   return (
     <div className="App">
@@ -28,6 +25,11 @@ function App() {
             <DisplayCards recipes={recipes}/>
         </Route>
         <Route exact path="/chefs">
+        </Route>
+        <Route exact path="/chefs/:id">
+        </Route>
+        <Route exact path="/recipes/:id">
+          <CardDetails/>
         </Route>
       </Switch>
     </div>
