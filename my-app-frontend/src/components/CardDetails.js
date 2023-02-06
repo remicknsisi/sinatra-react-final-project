@@ -10,7 +10,7 @@ function CardDetails ({ dataForDetails, isRecipe }) {
             method: 'PATCH',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
-
+                //need to figure this out here and make one for editChefs
             })
         })
         .then(res => res.json())

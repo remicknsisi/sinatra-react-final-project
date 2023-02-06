@@ -8,6 +8,8 @@ function NewCardForm ({ onSubmit }) {
     const [newHours, setNewHours] = useState(0)
     const [newIngredients, setNewIngredients] = useState('')
     const [newRating, setNewRating] = useState(0)
+    const [newCuisineType, setNewCuisineType] = useState('')
+
 
     function handleNameChange(e){
         setNewName(e.target.value)
@@ -27,11 +29,14 @@ function NewCardForm ({ onSubmit }) {
     function handleRatingChange(e){
         setNewRating(e.target.value)
     }
+    function handleCuisineTypeChange(e){
+        setNewCuisineType(e.target.value)
+    }
 
     function handleSubmitRecipe(e){
         e.preventDefault()
 
-        const newCard = {
+        const newRecipeCard = {
             name: newName,
             instructions: newInstructions,
             image_url: newImage,
@@ -40,7 +45,7 @@ function NewCardForm ({ onSubmit }) {
             rating: newRating
         }
 
-        onSubmit(newCard)
+        onSubmit(newRecipeCard)
     }
 
     return (
@@ -52,6 +57,7 @@ function NewCardForm ({ onSubmit }) {
                 <input type="number" onChange={handleHoursChange} value={newHours} placeholder="Hours to Prep" />
                 <input type="text" onChange={handleIngredientsChange} value={newIngredients} placeholder="Ingredients (separated by commas)" />
                 <input type="number" onChange={handleRatingChange} value={newRating} placeholder="Rating out of 5" />
+                <input type="text" onChange={handleCuisineTypeChange} value={newCuisineType} placeholder="main, dessert, or sides?" />
                 <button type="submit">Create Recipe</button>
             </form>
         </div>

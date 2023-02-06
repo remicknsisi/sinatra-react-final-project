@@ -24,9 +24,18 @@ function App() {
     .then((recipeData) => setRecipes(recipeData));
   }, [])
 
-  function handleSubmitCard (newCard){
-    console.log(newCard)
-  }
+  function handleSubmitRecipe (newRecipeCard){
+    fetch(`http://localhost:9292/recipes`, {
+      method: 'POST',
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(
+        newRecipeCard
+      )
+    })
+    .then(res => res.json())
+    .then(newRecipe => setRecipes([...recipes, newRecipe]))
+    }
+
 
   return (
     <div className="App">
@@ -48,7 +57,7 @@ function App() {
           <CardDetails isRecipe={true} dataForDetails={recipes} />
         </Route>
         <Route exact path="/new">
-          <NewCardForm onSubmit={handleSubmitCard}/>
+          <NewCardForm onSubmit={handleSubmitRecipe}/>
         </Route>
       </Switch>
     </div>
