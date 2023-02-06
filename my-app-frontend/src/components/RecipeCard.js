@@ -1,11 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom"
 
-function RecipeCard ({ data, chefs }) {
+function RecipeCard ({ recipe, chefs, onDeleteRecipe }) {
 
-    const { name, instructions, ingredients, image_url, hours, chef_id, rating, id } = data
+    const { name, instructions, ingredients, image_url, hours, chef_id, rating, id } = recipe
     // console.log(chefs)
     // const chef = chefs.filter(chef => chef.id === chef_id)
+
+    function handleDeleteRecipe(){
+        onDeleteRecipe(recipe)
+    }
 
     return (
         <div className="card">
@@ -17,6 +21,7 @@ function RecipeCard ({ data, chefs }) {
             Instructions:<p>{instructions}</p>
             <p>Rating: {rating}</p>
             <Link to={`/recipes/${id}`}>Read More</Link>
+            <button onClick={handleDeleteRecipe}>Delete Recipe</button>
         </div>
     )
 }
