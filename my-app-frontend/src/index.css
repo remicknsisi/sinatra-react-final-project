@@ -1,5 +1,7 @@
 .App {
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-image: url("https://cdn.pixabay.com/photo/2020/04/27/21/29/plaid-5101876_1280.jpg");
+  background-size: cover;
 }
 
 .nav {
