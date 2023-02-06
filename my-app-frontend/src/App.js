@@ -4,6 +4,8 @@ import NavBar from "./components/NavBar.js";
 import Home from "./components/Home.js"
 import DisplayCards from "./components/DisplayCards.js";
 import CardDetails from "./components/CardDetails.js";
+import NewCardForm from "./components/NewCardForm";
+
 
 function App() {
   const [recipes, setRecipes] = useState([])
@@ -13,6 +15,10 @@ function App() {
     .then((res) => res.json())
     .then((recipeData) => setRecipes(recipeData));
   }, [])
+
+  function handleSubmitCard (newCard){
+    console.log(newCard)
+  }
 
   return (
     <div className="App">
@@ -30,6 +36,9 @@ function App() {
         </Route>
         <Route exact path="/recipes/:id">
           <CardDetails recipes={recipes} />
+        </Route>
+        <Route exact path="/new">
+          <NewCardForm onSubmit={handleSubmitCard}/>
         </Route>
       </Switch>
     </div>

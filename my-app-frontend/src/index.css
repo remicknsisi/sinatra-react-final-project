@@ -31,3 +31,8 @@
   height: 512px;
   
 }
+
+.card-details {
+  background-color: antiquewhite;
+  padding: 10px;
+}
