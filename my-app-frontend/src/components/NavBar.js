@@ -5,8 +5,8 @@ function NavBar() {
   return (
     <div className="nav">
         <NavLink to="/" className="nav-link">Home</NavLink>
-        <NavLink to="/collection" className="nav-link">Collection</NavLink>
-        <NavLink to="/form" className="nav-link">Add New</NavLink>
+        <NavLink to="/recipes" className="nav-link">Recipes</NavLink>
+        <NavLink to="/recipes/new" className="nav-link">Add New</NavLink>
     </div>
   );
 }

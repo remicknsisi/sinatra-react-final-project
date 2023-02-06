@@ -1,0 +1,31 @@
+.App {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.nav {
+  text-align: center;
+}
+
+.nav-link {
+  padding: 30px;
+}
+
+.cards-container {
+  display: grid;
+  padding: 10px;
+  grid-template-columns: 30rem 30rem 30rem;
+  grid-gap: 1rem;
+  grid-auto-flow: row;
+}
+
+.card {
+  max-width: 500px;
+  background-color: antiquewhite;
+  padding: 10px;
+}
+
+.card-img {
+  width: 341.5px;
+  height: 512px;
+  
+}
