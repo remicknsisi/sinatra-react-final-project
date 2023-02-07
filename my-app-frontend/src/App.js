@@ -44,7 +44,11 @@ function App() {
 
   return (
     <div className="App">
+      <br></br>
+      <div className="title">Recipe App Title!</div>
+      <br></br>
       <NavBar />
+      <br></br>
       <Switch>
         <Route exact path="/">
             <Home/>

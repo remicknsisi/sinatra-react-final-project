@@ -25,10 +25,10 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes }) {
             <img className="card-img" src={image_url}></img>
             <br></br>
             <p>Hours to Prepare: {hours}</p>
-            Ingredients:<p>{ingredients}</p>
-            Instructions:<p>{instructions}</p>
             <p>Rating: {rating}</p>
             <Link to={`/recipes/${id}`}>Read More</Link>
+            <br></br>
+            <br></br>
             <button onClick={handleDeleteRecipe}>Delete Recipe</button>
         </div>
     )

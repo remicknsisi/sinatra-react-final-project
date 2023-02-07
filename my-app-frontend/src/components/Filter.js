@@ -3,7 +3,7 @@ import React from "react";
 function Filter({ selectedType, setSelectedType }) {
 
   return (
-    <div className="search">
+    <div className="filter">
       <label>Search Recipes by Type: </label>
       <select value={selectedType} onChange={(e) => setSelectedType(e.target.value)}>
         <option value="all">All</option>

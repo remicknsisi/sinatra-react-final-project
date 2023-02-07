@@ -1,15 +1,44 @@
 .App {
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  background-image: url("https://cdn.pixabay.com/photo/2020/04/27/21/29/plaid-5101876_1280.jpg");
-  background-size: cover;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAVFBMVEX////KABTHAADGAADJAADben3vy8vIAADlpafehojWYWXOMDfJAAz89PT03NztwsPdgYTVWl7MHSbosLLru7zadXjgjpDjmpzNJy/UVlrLEBz24uMRYnPWAAAC7klEQVR4nO2c3W7CMAxGQ1qg/MM22ID3f89JEDuduKmnTbaikyv0SZxtB1WzTeuU5KyWs8fp1xptts9oOUiy657JLO8lOuQSda2jZunvWDH/QmQhKzwKWchCljsKWb+Tdezy43Qnjd5yiZSVOonuytKodVRO83LO74tyPs4SHSQaJDpKsrjIGz81OreOSn053UFM7juJdhINJVp+6SdwWj6jvKofSuuoJNdjriy93CurXO7bjb5v3ZfLffRrtY5CFrKQ5Y5CFrL+SRalw3QURamlKNUTqbGIicpVVqSWNSaKqQOykOWOQhaykOWO+jFWLueq0U2iURkiZ1SGyGkfpa+0G7i//pxBkptGV4mOrz+nVRSNtAGFLGQhyx2FLGQhyx2VZLA1LkNe5maDRG8anWSUNqpoWkclnZl+yhj1otFRxq+DJAedyH5I9K5R66h5tbbKZWZfp65fZWbfjVonmfXX1kmj1lH9SFagljUmiqkDspDljkIWsv5fVqB/0jFRPUWppSil3ZmOopE2oJCFLGS5o5CFLGS5o4J+UR4TVU+sWzBio0K1rDFRTB2QhSx3FLKQhSx3FHsdDCj2OlhQPJxpQNFIG1DIQhay3FHIQhZ7HdxRFKWWolRPpMYiJoq9DgYUUwdkIcsdhSxkIcsdxV4HE0pfhboFIyaKRtqAQhaykOWOQhaykOWO4kEnA4pH6Kaj2OtgQLHXwYBi6oAsZLmjkIUs9jq4o9jrYCpKaXemo2ikDShkIQtZ7ihkIQtZ7qigX5THRNUT6xaM2KhQLWtMFFMHZCHLHYUsZCHLHcVeBwOKvQ4WFA9nGlA00gYUspCFLHcUspDFXgd3FEWppSjVE6mxiIlir4MBxdQBWchyRyELWchyR7HXwYTSV6FuwYiJopE2oJCFLGS5o5CFLGS5o3jQyYDiEbrpKPY6GFDsdTCgmDogC1nuKGQhi70O7ij2OpiKUtqd6SgaaQMKWchCljsKWchCljsKWQbUN3RZ8CROl+BuAAAAAElFTkSuQmCC");
+  background-size: contain;
+}
+
+.title {
+  text-align: center;
+  background-color: white;
+  font-weight: bolder;
+  font-size: 50px;
+  max-width: fit-content;
+  margin:auto;
 }
 
 .nav {
   text-align: center;
+  background-color: white;
+  max-width: fit-content;
+  margin:auto
 }
 
 .nav-link {
   padding: 30px;
+  font-weight: bold;
+  font-size: 22px;
+  color:black;
+}
+
+.nav-link:hover {
+  background:red;
+  color:white;
+  padding-block-start: 0%;
+  padding-block-end: 0%;
+}
+
+.filter {
+  text-align: center;
+  background-color: white;
+  max-width: fit-content;
+  margin:auto
 }
 
 .cards-container {
@@ -18,6 +47,8 @@
   grid-template-columns: 30rem 30rem 30rem;
   grid-gap: 1rem;
   grid-auto-flow: row;
+  width: fit-content;
+  block-size: fit-content;
 }
 
 .card {

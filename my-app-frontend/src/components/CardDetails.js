@@ -33,7 +33,7 @@ function CardDetails ({ dataForDetails, isRecipe }) {
             :
             <>
                 <h3>{itemOfFocus.first_name} {itemOfFocus.last_name}</h3>
-                <img className="card-img" src={itemOfFocus.image_url}></img>
+                <img className="card-img" src={itemOfFocus.image}></img>
                 <br></br>
                 <p>Age: {itemOfFocus.age}</p>
                 <p>All Recipes and Ratings:</p>
