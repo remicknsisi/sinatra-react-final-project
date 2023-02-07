@@ -11,6 +11,8 @@ function App() {
   const [chefs, setChefs] = useState([])
   const [selectedType, setSelectedType] = useState('all')
 
+  const history = useHistory();
+
   useEffect(() => {
     fetch("http://localhost:9292/chefs")
     .then((res) => res.json())
@@ -32,7 +34,9 @@ function App() {
       )
     })
     .then(res => res.json())
-    .then(newRecipe => setRecipes([...recipes, newRecipe]))
+    .then(newRecipe => {
+      setRecipes([...recipes, newRecipe])
+      history.push(`/recipes/${newRecipeCard.id}`)})
     }
 
   function handleDeleteRecipe(deletedRecipe){
