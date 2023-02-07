@@ -44,26 +44,39 @@
 .cards-container {
   display: grid;
   padding: 10px;
-  grid-template-columns: 30rem 30rem 30rem;
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
-  grid-auto-flow: row;
-  width: fit-content;
-  block-size: fit-content;
+  /* grid-auto-flow:column; */
+  /* width: fit-content;
+  block-size: fit-content; */
 }
 
 .card {
   max-width: 500px;
   background-color: antiquewhite;
   padding: 10px;
+  border: 2px dotted red;
+  text-align: center;
 }
 
 .card-img {
   width: 341.5px;
   height: 512px;
-  
 }
 
 .card-details {
   background-color: antiquewhite;
   padding: 10px;
+}
+
+button {
+  border-radius: 50px;
+  background-color: white;
+  float: right
+}
+
+button:hover {
+  background-color:black;
+  font-weight: bolder;
+  color: white;
 }

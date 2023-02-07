@@ -18,18 +18,16 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes }) {
             setRecipes(recipesToDisplay)})
         }
 
-
     return (
         <div className="card">
             <h3>{name} by chef name here</h3>
             <img className="card-img" src={image_url}></img>
             <br></br>
-            <p>Hours to Prepare: {hours}</p>
-            <p>Rating: {rating}</p>
+            <h4>Hours to Prepare: {hours} | Rating: {'⭐'.repeat(rating)}</h4>
             <Link to={`/recipes/${id}`}>Read More</Link>
             <br></br>
             <br></br>
-            <button onClick={handleDeleteRecipe}>Delete Recipe</button>
+            <button className="recipe-btn" onClick={handleDeleteRecipe}>❌ Delete Recipe</button>
         </div>
     )
 }
