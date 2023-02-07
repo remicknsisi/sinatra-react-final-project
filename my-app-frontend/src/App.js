@@ -48,15 +48,11 @@ function App() {
     if (selectedType === "all") return true;
     return recipe.cuisine_type === selectedType;
   })
-  
-  console.log(recipesToDisplay)
-
 
   return (
     <div className="App">
       <br></br>
       <div className="title">Recipe App Title!</div>
-      <br></br>
       <NavBar />
       <br></br>
       <Switch>
