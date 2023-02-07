@@ -4,8 +4,10 @@ import { Link } from "react-router-dom"
 function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes }) {
 
     const { name, instructions, ingredients, image_url, hours, chef_id, rating, id } = recipe
-    // console.log(chefs)
+    // console.log(chefs, chef_id)
     // const chef = chefs.filter(chef => chef.id === chef_id)
+    // console.log(chef)
+
 
     function handleDeleteRecipe(){
         fetch(`http://localhost:9292/recipes/${recipe.id}`, {
@@ -13,10 +15,7 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes }) {
           headers: {"Content-Type": "application/json"}
         })
         .then(res => res.json())
-        .then(deletedRecipe => {
-            const recipesToDisplay = recipes.filter(recipe => recipe !== deletedRecipe)
-            setRecipes(recipesToDisplay)})
-        }
+        .then(deletedRecipe => onDeleteRecipe(deletedRecipe))}
 
     return (
         <div className="card">

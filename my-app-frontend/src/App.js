@@ -6,7 +6,6 @@ import DisplayCards from "./components/DisplayCards.js";
 import CardDetails from "./components/CardDetails.js";
 import NewCardForm from "./components/NewCardForm";
 
-
 function App() {
   const [recipes, setRecipes] = useState([])
   const [chefs, setChefs] = useState([])
@@ -36,10 +35,21 @@ function App() {
     .then(newRecipe => setRecipes([...recipes, newRecipe]))
     }
 
-  // function handleDeleteRecipe(deletedRecipe){
-  //       const recipesToDisplay = recipes.filter(recipe => recipe != deletedRecipe)
-  //       setRecipes(recipesToDisplay)
-  //   }
+  function handleDeleteRecipe(deletedRecipe){
+        const recipesToDisplay = recipes.filter(recipe => recipe != deletedRecipe)
+        setRecipes(recipesToDisplay)
+    }
+
+  function handleNewSelection(type){
+      setSelectedType(type)
+    }
+
+  const recipesToDisplay = recipes.filter(recipe => {
+    if (selectedType === "all") return true;
+    return recipe.cuisine_type === selectedType;
+  })
+  
+  console.log(recipesToDisplay)
 
 
   return (
@@ -54,7 +64,7 @@ function App() {
             <Home/>
         </Route>
         <Route exact path="/recipes">
-            <DisplayCards inRecipes={true}  setRecipes={setRecipes} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipes} chefs={chefs}/>
+            <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipesToDisplay} chefs={chefs} onDeleteRecipe={handleDeleteRecipe}/>
         </Route>
         <Route exact path="/chefs">
             <DisplayCards inRecipes={false} collectionData={chefs}/>
