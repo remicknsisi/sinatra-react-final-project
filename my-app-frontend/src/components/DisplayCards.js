@@ -4,7 +4,7 @@ import ChefCard from './ChefCard.js'
 import Filter from './Filter.js'
 
 
-function DisplayCards ({ inRecipes, collectionData, selectedType, setSelectedType, onDeleteRecipe }) {
+function DisplayCards ({ inRecipes, collectionData, selectedType, setSelectedType, onDeleteRecipe, setRecipes }) {
     return (
         <div>
             {inRecipes ? 
@@ -13,7 +13,7 @@ function DisplayCards ({ inRecipes, collectionData, selectedType, setSelectedTyp
                 <div className="cards-container">
                     {collectionData.map(recipe => {
                     return (
-                        <RecipeCard key={recipe.id} recipe={recipe} onDeleteRecipe={onDeleteRecipe}/>
+                        <RecipeCard key={recipe.id} setRecipes={setRecipes} recipe={recipe} onDeleteRecipe={onDeleteRecipe} recipes={collectionData}/>
                     )
                 })}
                 </div>

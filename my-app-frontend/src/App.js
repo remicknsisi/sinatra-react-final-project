@@ -36,17 +36,10 @@ function App() {
     .then(newRecipe => setRecipes([...recipes, newRecipe]))
     }
 
-  function handleDeleteRecipe(recipe){
-      fetch(`http://localhost:9292/recipes/${recipe.id}`, {
-        method: 'DELETE',
-        headers: {"Content-Type": "application/json"}
-      })
-      .then(res => res.json())
-      .then(deletedRecipe => {
-        const recipesToDisplay = recipes.filter(recipe => recipe != deletedRecipe)
-        setRecipes(recipesToDisplay)
-      })
-    }
+  // function handleDeleteRecipe(deletedRecipe){
+  //       const recipesToDisplay = recipes.filter(recipe => recipe != deletedRecipe)
+  //       setRecipes(recipesToDisplay)
+  //   }
 
 
   return (
@@ -57,7 +50,7 @@ function App() {
             <Home/>
         </Route>
         <Route exact path="/recipes">
-            <DisplayCards inRecipes={true} onDeleteRecipe={handleDeleteRecipe} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipes} chefs={chefs}/>
+            <DisplayCards inRecipes={true}  setRecipes={setRecipes} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipes} chefs={chefs}/>
         </Route>
         <Route exact path="/chefs">
             <DisplayCards inRecipes={false} collectionData={chefs}/>
