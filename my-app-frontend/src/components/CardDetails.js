@@ -21,23 +21,24 @@ function CardDetails ({ dataForDetails, isRecipe }) {
         <div className="card-details">
             {isRecipe ? 
             <> 
-                <h3>{itemOfFocus.name}</h3>
+                <h1>{itemOfFocus.name}</h1>
                 <img className="card-img" src={itemOfFocus.image_url}></img>
                 <br></br>
-                <p>Hours to Prepare: {itemOfFocus.hours}</p>
-                Ingredients:<p>{itemOfFocus.ingredients}</p>
-                Instructions:<p>{itemOfFocus.instructions}</p>
-                <p>Rating: {itemOfFocus.rating}</p>
-                <button onClick={handleEditRecipe}>Edit Recipe</button>
+                <h3>Hours to Prepare: {itemOfFocus.hours} | Rating: {'⭐'.repeat(itemOfFocus.rating)}</h3>
+                <h2>Ingredients:</h2>
+                <p>{itemOfFocus.ingredients}</p>
+                <h2>Instructions:</h2>
+                <p className="instructions">{itemOfFocus.instructions}</p>
+                <button onClick={handleEditRecipe}>✏️ Edit Recipe</button>
             </>
             :
             <>
-                <h3>{itemOfFocus.first_name} {itemOfFocus.last_name}</h3>
+                <h2>{itemOfFocus.first_name} {itemOfFocus.last_name}</h2>
                 <img className="card-img" src={itemOfFocus.image}></img>
                 <br></br>
                 <p>Age: {itemOfFocus.age}</p>
                 <p>All Recipes and Ratings:</p>
-                <button>Edit Chef</button>
+                <button>✏️ Edit Chef</button>
             </>
             }
         </div>

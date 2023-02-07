@@ -45,10 +45,7 @@
   display: grid;
   padding: 10px;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1rem;
-  /* grid-auto-flow:column; */
-  /* width: fit-content;
-  block-size: fit-content; */
+  grid-gap: 1rem
 }
 
 .card {
@@ -66,7 +63,13 @@
 
 .card-details {
   background-color: antiquewhite;
-  padding: 10px;
+  padding: 200px;
+  border: 2px dotted red;
+  text-align: center;
+}
+
+.instructions {
+  text-align: left;
 }
 
 button {
