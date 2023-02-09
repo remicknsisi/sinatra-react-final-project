@@ -44,6 +44,11 @@ function App() {
     setRecipes(recipesToDisplay)
 }
 
+  // function handleFavoriteClick(updatedRecipe){
+  //   const updatedRecipes = recipes.map(recipe => recipe.id === updatedRecipe.id ? updatedRecipe : recipe)
+  //   setRecipes(updatedRecipes)
+  // }
+
   return (
     <div className="App">
       <br></br>
@@ -61,10 +66,10 @@ function App() {
             <DisplayCards inRecipes={false} collectionData={chefs}/>
         </Route>
         <Route exact path="/chefs/:id">
-          <CardDetails isRecipe={false} dataForDetails={chefs} />
+          <CardDetails isRecipe={false} dataForDetails={chefs} recipes={recipes} />
         </Route>
         <Route exact path="/recipes/:id">
-          <CardDetails isRecipe={true} dataForDetails={recipes} />
+          <CardDetails isRecipe={true} dataForDetails={recipes} recipes={recipes} />
         </Route>
         <Route exact path="/new">
           <NewCardForm onSubmit={handleSubmitRecipe}/>

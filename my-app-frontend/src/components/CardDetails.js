@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 
-function CardDetails ({ dataForDetails, isRecipe }) {
+function CardDetails ({ dataForDetails, isRecipe, recipes }) {
+    const [isHidden, setIsHidden] = useState(true)
     const { id } = useParams()
     const itemOfFocus = dataForDetails.find(item => item.id == id)
 
@@ -15,6 +16,12 @@ function CardDetails ({ dataForDetails, isRecipe }) {
         })
         .then(res => res.json())
         .then(updatedRecipe => console.log(updatedRecipe))
+    }
+
+    const chefRecipes = recipes.filter(recipe => recipe.chef_id === itemOfFocus.id)
+
+    function handleShowAll(){
+        setIsHidden(!isHidden)
     }
 
     return (
@@ -37,7 +44,26 @@ function CardDetails ({ dataForDetails, isRecipe }) {
                 <img className="card-img" src={itemOfFocus.image}></img>
                 <br></br>
                 <p>Age: {itemOfFocus.age}</p>
-                <p>All Recipes and Ratings:</p>
+                {isHidden ? 
+                <div>
+                    <p>Show All Recipes and Ratings:</p>
+                    <button onClick={() => handleShowAll()} >v</button> 
+                </div>
+                :
+                <div>
+                    <p>Hide All Recipes and Ratings:</p>
+                    <button onClick={() => handleShowAll()} >v</button> 
+                    {chefRecipes.map(chefRecipe => {
+                        return(
+                            <div>
+                                <h4>{chefRecipe.name}</h4>
+                                <p>Hours to Prepare: {chefRecipe.hours} | Rating: {'⭐'.repeat(chefRecipe.rating)}</p>
+                            </div>
+                        )
+                    })}
+                </div>
+                }
+                <br></br>
                 <button>✏️ Edit Chef</button>
             </>
             }
