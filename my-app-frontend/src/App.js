@@ -25,19 +25,9 @@ function App() {
     .then((recipeData) => setRecipes(recipeData));
   }, [])
 
-  function handleSubmitRecipe (newRecipeCard){
-    fetch(`http://localhost:9292/recipes`, {
-      method: 'POST',
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(
-        newRecipeCard
-      )
-    })
-    .then(res => res.json())
-    .then(newRecipe => {
-      setRecipes([...recipes, newRecipe])
-      history.push(`/recipes/${newRecipeCard.id}`)})
-    }
+  function handleSubmitRecipe (newRecipeObj){
+      setRecipes([...recipes, newRecipeObj])
+      history.push(`/recipes/${newRecipeObj.id}`)}
 
   function handleDeleteRecipe(deletedRecipe){
         const recipesToDisplay = recipes.filter(recipe => recipe != deletedRecipe)
@@ -46,6 +36,18 @@ function App() {
 
   function handleNewSelection(type){
       setSelectedType(type)
+    }
+
+  function handleFavorite(id){
+      fetch(`http://localhost:9292/recipes/${id}`, {
+        method: 'PATCH',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          "isFavorited": true 
+        })
+      })
+      .then(res => res.json)
+      .then(updatedRecipe => console.log(updatedRecipe))
     }
 
   const recipesToDisplay = recipes.filter(recipe => {
@@ -64,7 +66,7 @@ function App() {
             <Home/>
         </Route>
         <Route exact path="/recipes">
-            <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipesToDisplay} chefs={chefs} onDeleteRecipe={handleDeleteRecipe}/>
+            <DisplayCards onFavorite={handleFavorite} inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipesToDisplay} chefs={chefs} onDeleteRecipe={handleDeleteRecipe}/>
         </Route>
         <Route exact path="/chefs">
             <DisplayCards inRecipes={false} collectionData={chefs}/>

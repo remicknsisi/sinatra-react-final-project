@@ -71,6 +71,11 @@
   height: 512px;
 }
 
+.fav-btn {
+  border-radius: 50px;
+  background-color: red;
+}
+
 .card-details {
   background-color: antiquewhite;
   padding: 200px;
@@ -85,7 +90,6 @@
 button {
   border-radius: 50px;
   background-color: white;
-  float: right
 }
 
 button:hover {

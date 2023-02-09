@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom"
 
-function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes }) {
+function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFavorite }) {
 
-    const { name, instructions, ingredients, image_url, hours, chef_id, rating, id } = recipe
+    const { name, instructions, ingredients, image_url, hours, chef_id, rating, id, isFavorited } = recipe
     // console.log(chefs, chef_id)
     // const chef = chefs.filter(chef => chef.id === chef_id)
     // console.log(chef)
@@ -26,6 +26,7 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes }) {
             <Link to={`/recipes/${id}`}>Read More</Link>
             <br></br>
             <br></br>
+            {isFavorited ? <button onClick={() => onFavorite(id)} className="fav-btn">❤️ Favorited</button> : <button onClick={() => onFavorite(id)}>🤍 Favorite this Recipe</button>} 
             <button className="recipe-btn" onClick={handleDeleteRecipe}>❌ Delete Recipe</button>
         </div>
     )

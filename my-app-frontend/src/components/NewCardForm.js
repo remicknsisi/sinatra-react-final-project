@@ -42,10 +42,19 @@ function NewCardForm ({ onSubmit }) {
             image_url: newImage,
             hours: newHours,
             ingredients: newIngredients,
-            rating: newRating
+            rating: newRating,
+            isFavorited: false
         }
 
-        onSubmit(newRecipeCard)
+        fetch(`http://localhost:9292/recipes`, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(
+              newRecipeCard
+            )
+          })
+          .then(res => res.json())
+          .then(newRecipe => onSubmit(newRecipe))
     }
 
     return (
