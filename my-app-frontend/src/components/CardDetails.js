@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 function CardDetails ({ dataForDetails, isRecipe, recipes }) {
     const [isHidden, setIsHidden] = useState(true)
@@ -56,7 +56,7 @@ function CardDetails ({ dataForDetails, isRecipe, recipes }) {
                     {chefRecipes.map(chefRecipe => {
                         return(
                             <div>
-                                <h4>{chefRecipe.name}</h4>
+                                <Link to={`/recipes/${chefRecipe.id}`}>{chefRecipe.name}</Link>
                                 <p>Hours to Prepare: {chefRecipe.hours} | Rating: {'⭐'.repeat(chefRecipe.rating)}</p>
                             </div>
                         )
