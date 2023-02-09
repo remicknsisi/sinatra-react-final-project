@@ -44,6 +44,11 @@
   border: 2px dotted red;
 }
 
+.p-home {
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
 .filter {
   text-align: center;
   background-color: white;

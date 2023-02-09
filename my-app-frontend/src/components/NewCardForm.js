@@ -68,6 +68,7 @@ function NewCardForm ({ onSubmit }) {
                 <input type="number" onChange={handleRatingChange} value={newRating} placeholder="Rating out of 5" />
                 <input type="text" onChange={handleCuisineTypeChange} value={newCuisineType} placeholder="main, dessert, or sides?" />
                 <button type="submit">Create Recipe</button>
+                {/* make this last option a drop down */}
             </form>
         </div>
     )
