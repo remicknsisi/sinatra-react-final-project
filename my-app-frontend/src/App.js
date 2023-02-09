@@ -29,11 +29,6 @@ function App() {
       setRecipes([...recipes, newRecipeObj])
       history.push(`/recipes/${newRecipeObj.id}`)}
 
-  function handleDeleteRecipe(deletedRecipe){
-        const recipesToDisplay = recipes.filter(recipe => recipe != deletedRecipe)
-        setRecipes(recipesToDisplay)
-    }
-
   function handleNewSelection(type){
       setSelectedType(type)
     }
@@ -54,6 +49,11 @@ function App() {
     if (selectedType === "all") return true;
     return recipe.cuisine_type === selectedType;
   })
+
+  function handleDeleteRecipe(deletedRecipe){
+    const recipesToDisplay = recipes.filter(recipe => recipe.id !== deletedRecipe.id)
+    setRecipes(recipesToDisplay)
+}
 
   return (
     <div className="App">

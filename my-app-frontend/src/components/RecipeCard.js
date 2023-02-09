@@ -11,9 +11,7 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFav
 
     function handleDeleteRecipe(){
         fetch(`http://localhost:9292/recipes/${recipe.id}`, {
-          method: 'DELETE',
-          headers: {"Content-Type": "application/json"}
-        })
+          method: 'DELETE'})
         .then(res => res.json())
         .then(deletedRecipe => onDeleteRecipe(deletedRecipe))}
 
