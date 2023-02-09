@@ -11,6 +11,7 @@ function Filter({ selectedType, setSelectedType, onNewSelection }) {
         <option value="dessert">Desserts</option>
         <option value="sides">Sides</option>
         <option value="main">Mains</option>
+        <option value="favorite">Favorites</option>
       </select>
     </div>
   );

@@ -33,20 +33,9 @@ function App() {
       setSelectedType(type)
     }
 
-  function handleFavorite(id){
-      fetch(`http://localhost:9292/recipes/${id}`, {
-        method: 'PATCH',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-          "isFavorited": true 
-        })
-      })
-      .then(res => res.json)
-      .then(updatedRecipe => console.log(updatedRecipe))
-    }
-
   const recipesToDisplay = recipes.filter(recipe => {
     if (selectedType === "all") return true;
+    else if (selectedType === "favorite") return recipe.isFavorited == true;
     return recipe.cuisine_type === selectedType;
   })
 
@@ -66,7 +55,7 @@ function App() {
             <Home/>
         </Route>
         <Route exact path="/recipes">
-            <DisplayCards onFavorite={handleFavorite} inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipesToDisplay} chefs={chefs} onDeleteRecipe={handleDeleteRecipe}/>
+            <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipesToDisplay} chefs={chefs} onDeleteRecipe={handleDeleteRecipe}/>
         </Route>
         <Route exact path="/chefs">
             <DisplayCards inRecipes={false} collectionData={chefs}/>
