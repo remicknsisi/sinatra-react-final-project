@@ -4,9 +4,9 @@ import { Link } from "react-router-dom"
 function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFavoriteClick }) {
 
     const { name, instructions, ingredients, image_url, hours, chef_id, rating, id, isFavorited } = recipe
-    // console.log(chefs, chef_id)
-    // const chef = chefs.filter(chef => chef.id === chef_id)
-    // console.log(chef)
+    console.log(chef_id)
+    const chef = chefs.filter(chef => chef.id === chef_id)
+    const fullChefName = chef[0].first_name + ' ' + chef[0].last_name
 
     //chef IDs need tobe fixed in database 
 
@@ -49,7 +49,7 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFav
 
     return (
         <div className="card">
-            <h3>{name} by chef name here</h3>
+            <h3>{name} by {fullChefName}</h3>
             <img className="card-img" src={image_url}></img>
             <br></br>
             <h4>Hours to Prepare: {hours} | Rating: {'⭐'.repeat(rating)}</h4>
