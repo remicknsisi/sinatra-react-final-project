@@ -9,6 +9,7 @@ import NewCardForm from "./components/NewCardForm";
 function App() {
   const [recipes, setRecipes] = useState([])
   const [chefs, setChefs] = useState([])
+  const [reviews, setReviews] = useState([])
   const [selectedType, setSelectedType] = useState('all')
 
   const history = useHistory();
@@ -23,6 +24,12 @@ function App() {
     fetch("http://localhost:9292/recipes")
     .then((res) => res.json())
     .then((recipeData) => setRecipes(recipeData));
+  }, [])
+
+  useEffect(() => {
+    fetch("http://localhost:9292/reviews")
+    .then((res) => res.json())
+    .then((reviewData) => setReviews(reviewData));
   }, [])
 
   function handleSubmitRecipe (newRecipeObj){
@@ -69,7 +76,7 @@ function App() {
           <CardDetails isRecipe={false} dataForDetails={chefs} recipes={recipes} />
         </Route>
         <Route exact path="/recipes/:id">
-          <CardDetails isRecipe={true} dataForDetails={recipes} recipes={recipes} />
+          <CardDetails isRecipe={true} reviews={reviews} dataForDetails={recipes} recipes={recipes} />
         </Route>
         <Route exact path="/new">
           <NewCardForm onSubmit={handleSubmitRecipe}/>

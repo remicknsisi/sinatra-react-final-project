@@ -3,8 +3,7 @@ import { Link } from "react-router-dom"
 
 function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFavoriteClick }) {
 
-    const { name, instructions, ingredients, image_url, hours, chef_id, rating, id, isFavorited } = recipe
-    console.log(chef_id)
+    const { name, instructions, ingredients, image_url, hours, chef_id, average_rating, id, isFavorited } = recipe
     const chef = chefs.filter(chef => chef.id === chef_id)
     const fullChefName = chef[0].first_name + ' ' + chef[0].last_name
 
@@ -52,7 +51,7 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFav
             <h3>{name} by {fullChefName}</h3>
             <img className="card-img" src={image_url}></img>
             <br></br>
-            <h4>Hours to Prepare: {hours} | Rating: {'⭐'.repeat(rating)}</h4>
+            <h4>Hours to Prepare: {hours} | Rating: {'⭐'.repeat(average_rating)}</h4>
             <Link to={`/recipes/${id}`}>Read More</Link>
             <br></br>
             <br></br>

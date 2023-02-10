@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 
-function CardDetails ({ dataForDetails, isRecipe, recipes }) {
+function CardDetails ({ dataForDetails, isRecipe, recipes, reviews }) {
     const [isHidden, setIsHidden] = useState(true)
     const { id } = useParams()
     const itemOfFocus = dataForDetails.find(item => item.id == id)
+    const reviewsOfFocus = reviews.filter(review => review.id == id)
 
     function handleEditRecipe(){
         fetch(`http://localhost:9292/recipes/${id}`, {
@@ -37,6 +38,16 @@ function CardDetails ({ dataForDetails, isRecipe, recipes }) {
                 <h2>Instructions:</h2>
                 <p className="instructions">{itemOfFocus.instructions}</p>
                 <button onClick={handleEditRecipe}>✏️ Edit Recipe</button>
+                <br></br>
+                <h3>Reviews</h3>
+                {reviewsOfFocus.map(review => {
+                    return (
+                        <div>
+                            <h4>{review.author_name} | Rating: {'⭐'.repeat(review.rating)}</h4>
+                            <p>{review.comment}</p>
+                        </div>
+                    )
+                })}
             </>
             :
             <>
