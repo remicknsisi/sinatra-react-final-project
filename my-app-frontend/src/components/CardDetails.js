@@ -39,10 +39,10 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews }) {
                 <p className="instructions">{itemOfFocus.instructions}</p>
                 <button onClick={handleEditRecipe}>✏️ Edit Recipe</button>
                 <br></br>
-                <h3>Reviews</h3>
+                <h3 className="reviews-header">Reviews</h3>
                 {reviewsOfFocus.map(review => {
                     return (
-                        <div>
+                        <div className="reviews">
                             <h4>{review.author_name} | Rating: {'⭐'.repeat(review.rating)}</h4>
                             <p>{review.comment}</p>
                         </div>
