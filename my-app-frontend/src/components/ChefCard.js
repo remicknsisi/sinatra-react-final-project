@@ -6,7 +6,7 @@ function ChefCard ({ chef, onDeleteChef }) {
     const { first_name, last_name, age, image, id } = chef
 
     function handleDeleteChef(){
-        fetch(`http://localhost:9292/recipes/${chef.id}`, {
+        fetch(`http://localhost:9292/chefs/${chef.id}`, {
           method: 'DELETE'})
         .then(res => res.json())
         .then(deletedChef => onDeleteChef(deletedChef))}
