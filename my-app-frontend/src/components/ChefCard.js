@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 function ChefCard ({ chef, onDeleteChef }) {
 
-    const { first_name, last_name, age, image, id } = chef
+    const { first_name, last_name, age, image, id, years_cooking } = chef
 
     function handleDeleteChef(){
         fetch(`http://localhost:9292/chefs/${chef.id}`, {
@@ -16,7 +16,7 @@ function ChefCard ({ chef, onDeleteChef }) {
             <h3>{first_name} {last_name}</h3>
             <img className="card-img" src={image}></img>
             <br></br>
-            <p>Years Cooking: "years" | Age: {age}</p>
+            <h4>Years Cooking: {years_cooking} | Age: {age}</h4>
             <Link to={`/chefs/${id}`}>Read More</Link>
             <br></br>
             <br></br>

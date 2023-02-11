@@ -8,6 +8,9 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, set
     const itemOfFocus = dataForDetails.find(item => item.id == id)
     const reviewsOfFocus = reviews.filter(review => review.recipe_id == id)
 
+    const averageRating = reviewsOfFocus.map(review => review.rating).reduce((sum, value) =>  
+        {return sum + value}, 0) / reviewsOfFocus.length
+    
     function handleEditRecipe(){
         fetch(`http://localhost:9292/recipes/${id}`, {
             method: 'PATCH',
@@ -33,7 +36,7 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, set
                 <h1>{itemOfFocus.name}</h1>
                 <img className="card-img" src={itemOfFocus.image_url}></img>
                 <br></br>
-                <h3>Hours to Prepare: {itemOfFocus.hours} | Rating: {'⭐'.repeat(itemOfFocus.rating)}</h3>
+                <h3>Hours to Prepare: {itemOfFocus.hours} | Average Rating: {'⭐'.repeat(Math.round(averageRating))}</h3>
                 <h2>Ingredients:</h2>
                 <p>{itemOfFocus.ingredients}</p>
                 <h2>Instructions:</h2>

@@ -78,7 +78,7 @@ function App() {
   return (
     <div className="App">
       <br></br>
-      <div className="title">Recipe App Title!</div>
+      <div className="title">What's Cookin'?</div>
       <NavBar />
       <br></br>
       <Switch>
@@ -86,10 +86,10 @@ function App() {
             <Home/>
         </Route>
         <Route exact path="/recipes">
-            <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipesToDisplay} chefs={chefs} onDeleteRecipe={handleDeleteRecipe}/>
+            <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipesToDisplay} chefs={chefs} onDeleteRecipe={handleDeleteRecipe} reviews={reviews}/>
         </Route>
         <Route exact path="/chefs">
-            <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay} onDeleteChef={handleDeleteChef}/>
+            <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay} onDeleteChef={handleDeleteChef} reviews={reviews}/>
         </Route>
         <Route exact path="/chefs/:id">
           <CardDetails isRecipe={false} dataForDetails={chefs} reviews={reviews} recipes={recipes} />
