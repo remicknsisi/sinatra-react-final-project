@@ -92,14 +92,21 @@
   text-align: left;
 }
 
-.reviews-header {
+.reviews-container {
+  font-size: 0px;
   background-color: white;
 
 }
 
+.reviews-header {
+  display:inline-block;
+  font-size:medium
+}
+
 .reviews {
-  background-color: white;
   text-align: left;
+  font-size:medium;
+  padding: 5px;
 }
 
 button {

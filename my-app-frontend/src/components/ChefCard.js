@@ -10,7 +10,7 @@ function ChefCard ({ chef }) {
             <h3>{first_name} {last_name}</h3>
             <img className="card-img" src={image}></img>
             <br></br>
-            <p>Age: {age}</p>
+            <p>Years Cooking: "years" | Age: {age}</p>
             <Link to={`/chefs/${id}`}>Read More</Link>
         </div>
     )

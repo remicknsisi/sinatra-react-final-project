@@ -14,7 +14,8 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFav
         .then(deletedRecipe => onDeleteRecipe(deletedRecipe))}
 
     function handleClick(id){
-        recipe.isFavorited ? 
+        {recipe.isFavorited 
+        ? 
             fetch(`http://localhost:9292/recipes/${id}`, {
                 method: 'PATCH',
                 headers: {"Content-Type": "application/json"},
@@ -40,6 +41,7 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFav
                 const updatedRecipes = recipes.map(recipe => recipe.id === updatedRecipe.id ? updatedRecipe : recipe)
                 setRecipes(updatedRecipes)
               })
+            }
         }
 
     //likes are lagging - why wont a re-render trigger?

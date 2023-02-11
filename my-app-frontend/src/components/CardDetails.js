@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import NewCommentForm from './NewCommentForm.js'
 
-function CardDetails ({ dataForDetails, isRecipe, recipes, reviews }) {
+function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, setComment, onPostComment }) {
     const [isHidden, setIsHidden] = useState(true)
     const { id } = useParams()
     const itemOfFocus = dataForDetails.find(item => item.id == id)
@@ -39,31 +40,36 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews }) {
                 <p className="instructions">{itemOfFocus.instructions}</p>
                 <button onClick={handleEditRecipe}>✏️ Edit Recipe</button>
                 <br></br>
-                <h3 className="reviews-header">Reviews</h3>
-                {reviewsOfFocus === [] ? 
-                <>
-                    <p>"No reviews yet!"</p>
-                    {/* need to fix this */}
-                </>
-                :
-                <>
-                {reviewsOfFocus.map(review => {
-                    return (
-                        <div className="reviews">
-                            <h4>{review.author_name} | Rating: {'⭐'.repeat(review.rating)}</h4>
-                            <p>{review.comment}</p>
-                        </div>
-                    )
-                })}
-                </>
-                }
+                <div className="reviews-container">
+                    <h3 className="reviews-header">Reviews</h3>
+                    {reviewsOfFocus === [] ? 
+                    <>
+                        <p>"No reviews yet!"</p>
+                        {/* need to fix this */}
+                    </>
+                    :
+                    <>
+                    {reviewsOfFocus.map(review => {
+                        return (
+                            <div className="reviews">
+                                <h4>{review.author_name} | Rating: {'⭐'.repeat(review.rating)}</h4>
+                                <p>{review.comment}</p>
+                            </div>
+                        )
+                    })}
+                    </>
+                    }
+                </div>
+                <NewCommentForm onPostComment={onPostComment} comment={comment} setComment={setComment}/>
             </>
             :
             <>
                 <h2>{itemOfFocus.first_name} {itemOfFocus.last_name}</h2>
-                <img className="card-img" src={itemOfFocus.image}></img>
+                <img className="chef-card-img" src={itemOfFocus.image}></img>
                 <br></br>
-                <p>Age: {itemOfFocus.age}</p>
+                <h3>Years Cooking: "years" | Age: {itemOfFocus.age}</h3>
+                <h2>Biography:</h2>
+                <p className="instructions">"bio"</p>
                 {isHidden ? 
                 <div>
                     <p>Show All Recipes and Ratings:</p>

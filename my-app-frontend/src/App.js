@@ -12,6 +12,7 @@ function App() {
   const [reviews, setReviews] = useState([])
   const [selectedType, setSelectedType] = useState('all')
   const [search, setSearch] = useState('')
+  const [comment, setComment] = useState('')
 
   const history = useHistory();
 
@@ -45,6 +46,10 @@ function App() {
   function handleNewSelection(type){
       setSelectedType(type)
     }
+
+  function handlePostComment(newComment){
+    console.log(newComment)
+  }
 
   const recipesToDisplay = recipes.filter(recipe => {
     if (selectedType === "all") return true;
@@ -87,7 +92,7 @@ function App() {
           <CardDetails isRecipe={false} dataForDetails={chefs} reviews={reviews} recipes={recipes} />
         </Route>
         <Route exact path="/recipes/:id">
-          <CardDetails isRecipe={true} reviews={reviews} dataForDetails={recipes} recipes={recipes} />
+          <CardDetails isRecipe={true} comment={comment} setComment={setComment} reviews={reviews} dataForDetails={recipes} recipes={recipes} onPostComment={handlePostComment} />
         </Route>
         <Route exact path="/new">
           <NewCardForm onSubmit={handleSubmitRecipe} onChefSubmit={handleSubmitChef}/>
