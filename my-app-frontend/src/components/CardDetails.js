@@ -34,7 +34,11 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, set
             <li>{step}</li>
         )
     })
-    console.log(instructionsList)
+    const ingredientsList = itemOfFocus.ingredients.split(', ').map(ingredient => {
+        return(
+            <li>{ingredient}</li>
+        )
+    })
 
     return (
         <div className="card-details">
@@ -44,12 +48,10 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, set
                 <img className="card-img" src={itemOfFocus.image_url}></img>
                 <br></br>
                 <h3>Hours to Prepare: {itemOfFocus.hours} | Average Rating: {'⭐'.repeat(Math.round(averageRating))}</h3>
-                <h2>Ingredients:</h2>
-                <p>{itemOfFocus.ingredients}</p>
-                <h2>Instructions:</h2>
-                <ol type="1" className="instructions">{instructionsList}
-                    {/* {itemOfFocus.instructions} */}
-                </ol>
+                <h2 className="ingredients-container">Ingredients:</h2>
+                    <ul className="ingredients">{ingredientsList}</ul>
+                <h2 >Instructions:</h2>
+                    <ol type="1" className="instructions">{instructionsList}</ol>
                 <button onClick={handleEditRecipe}>✏️ Edit Recipe</button>
                 <br></br>
                 <div className="reviews-container">
