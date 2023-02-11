@@ -83,8 +83,8 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
         e.preventDefault()
 
         const newChefCard = {
-            firstName: newFirstName,
-            lastName: newLastName,
+            first_name: newFirstName,
+            last_name: newLastName,
             age: newAge,
             image: newChefImage
         }
