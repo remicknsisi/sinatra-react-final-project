@@ -29,6 +29,13 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, set
         setIsHidden(!isHidden)
     }
 
+    const instructionsList = itemOfFocus.instructions.split('. ').map(step => {
+        return(
+            <li>{step}</li>
+        )
+    })
+    console.log(instructionsList)
+
     return (
         <div className="card-details">
             {isRecipe ? 
@@ -40,7 +47,9 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, set
                 <h2>Ingredients:</h2>
                 <p>{itemOfFocus.ingredients}</p>
                 <h2>Instructions:</h2>
-                <p className="instructions">{itemOfFocus.instructions}</p>
+                <ol type="1" className="instructions">{instructionsList}
+                    {/* {itemOfFocus.instructions} */}
+                </ol>
                 <button onClick={handleEditRecipe}>✏️ Edit Recipe</button>
                 <br></br>
                 <div className="reviews-container">
@@ -70,7 +79,7 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, set
                 <h2>{itemOfFocus.first_name} {itemOfFocus.last_name}</h2>
                 <img className="chef-card-img" src={itemOfFocus.image}></img>
                 <br></br>
-                <h3>Years Cooking: "years" | Age: {itemOfFocus.age}</h3>
+                <h3>Years Cooking: {itemOfFocus.years_cooking} | Age: {itemOfFocus.age}</h3>
                 <h2>Biography:</h2>
                 <p className="instructions">"bio"</p>
                 {isHidden ? 
@@ -86,7 +95,7 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, set
                         return(
                             <div>
                                 <Link to={`/recipes/${chefRecipe.id}`}>{chefRecipe.name}</Link>
-                                <p>Hours to Prepare: {chefRecipe.hours} | Rating: {'⭐'.repeat(chefRecipe.rating)}</p>
+                                <p>Hours to Prepare: {chefRecipe.hours} | Rating: {'⭐'.repeat(averageRating)}</p>
                             </div>
                         )
                     })}
