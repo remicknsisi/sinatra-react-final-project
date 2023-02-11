@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 function NewCommentForm ({ onPostComment }) {
 
@@ -6,13 +7,15 @@ function NewCommentForm ({ onPostComment }) {
     const [newRating, setNewRating] = useState(3)
     const [newAuthorName, setNewAuthorName] = useState('')
 
+    const { id } = useParams()
+
     function handlePostComment(e){
         e.preventDefault()
 
         const newReview = {
             comment: newComment,
             rating: newRating,
-            recipe_id: 6,
+            recipe_id: id,
             author_name: newAuthorName
         }
 

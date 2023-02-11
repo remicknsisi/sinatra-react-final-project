@@ -12,7 +12,6 @@ function App() {
   const [reviews, setReviews] = useState([])
   const [selectedType, setSelectedType] = useState('all')
   const [search, setSearch] = useState('')
-  const [comment, setComment] = useState('')
 
   const history = useHistory();
 
@@ -48,7 +47,7 @@ function App() {
     }
 
   function handlePostComment(newComment){
-    console.log(newComment)
+    setReviews([...reviews, newComment])
   }
 
   const recipesToDisplay = recipes.filter(recipe => {
@@ -92,7 +91,7 @@ function App() {
           <CardDetails isRecipe={false} dataForDetails={chefs} reviews={reviews} recipes={recipes} />
         </Route>
         <Route exact path="/recipes/:id">
-          <CardDetails isRecipe={true} comment={comment} setComment={setComment} reviews={reviews} dataForDetails={recipes} recipes={recipes} onPostComment={handlePostComment} />
+          <CardDetails isRecipe={true} reviews={reviews} dataForDetails={recipes} recipes={recipes} onPostComment={handlePostComment} />
         </Route>
         <Route exact path="/new">
           <NewCardForm onSubmit={handleSubmitRecipe} onChefSubmit={handleSubmitChef}/>
