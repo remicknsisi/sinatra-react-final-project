@@ -66,6 +66,10 @@ function App() {
     setRecipes(recipesToDisplay)
 }
 
+  function handleDeleteChef(deletedChef){
+    const chefsToDisplay = chefs.filter(chef => chef.id !== deletedChef.id)
+    setChefs(chefsToDisplay)
+}
   // function handleFavoriteClick(updatedRecipe){
   //   const updatedRecipes = recipes.map(recipe => recipe.id === updatedRecipe.id ? updatedRecipe : recipe)
   //   setRecipes(updatedRecipes)
@@ -85,7 +89,7 @@ function App() {
             <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipesToDisplay} chefs={chefs} onDeleteRecipe={handleDeleteRecipe}/>
         </Route>
         <Route exact path="/chefs">
-            <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay}/>
+            <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay} onDeleteChef={handleDeleteChef}/>
         </Route>
         <Route exact path="/chefs/:id">
           <CardDetails isRecipe={false} dataForDetails={chefs} reviews={reviews} recipes={recipes} />

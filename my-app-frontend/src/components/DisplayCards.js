@@ -5,7 +5,7 @@ import Filter from './Filter.js'
 import Search from './Search'
 
 
-function DisplayCards ({ search, setSearch, inRecipes, collectionData, onFavoriteClick, selectedType, setSelectedType, onDeleteRecipe, setRecipes, chefs, onNewSelection }) {
+function DisplayCards ({ search, setSearch, inRecipes, collectionData, onFavoriteClick, selectedType, setSelectedType, onDeleteRecipe, setRecipes, chefs, onNewSelection, onDeleteChef }) {
     return (
         <div>
             {inRecipes ? 
@@ -24,7 +24,7 @@ function DisplayCards ({ search, setSearch, inRecipes, collectionData, onFavorit
                 <div className="cards-container">
                 {collectionData.map(chef => {
                 return (
-                    <ChefCard key={chef.id} chef={chef}/>
+                    <ChefCard key={chef.id} onDeleteChef={onDeleteChef} chef={chef}/>
                 )
                 })}
                 </div>
