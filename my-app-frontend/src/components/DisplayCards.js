@@ -2,9 +2,10 @@ import React from "react";
 import RecipeCard from './RecipeCard.js'
 import ChefCard from './ChefCard.js'
 import Filter from './Filter.js'
+import Search from './Search'
 
 
-function DisplayCards ({ inRecipes, collectionData, onFavoriteClick, selectedType, setSelectedType, onDeleteRecipe, setRecipes, chefs, onNewSelection }) {
+function DisplayCards ({ search, setSearch, inRecipes, collectionData, onFavoriteClick, selectedType, setSelectedType, onDeleteRecipe, setRecipes, chefs, onNewSelection }) {
     return (
         <div>
             {inRecipes ? 
@@ -18,6 +19,8 @@ function DisplayCards ({ inRecipes, collectionData, onFavoriteClick, selectedTyp
                 })}
                 </div>
             </> :
+            <>
+                <Search search={search} setSearch={setSearch}/>
                 <div className="cards-container">
                 {collectionData.map(chef => {
                 return (
@@ -25,6 +28,7 @@ function DisplayCards ({ inRecipes, collectionData, onFavoriteClick, selectedTyp
                 )
                 })}
                 </div>
+            </>
             }
             
         </div>

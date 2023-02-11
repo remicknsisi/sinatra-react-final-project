@@ -11,6 +11,7 @@ function App() {
   const [chefs, setChefs] = useState([])
   const [reviews, setReviews] = useState([])
   const [selectedType, setSelectedType] = useState('all')
+  const [search, setSearch] = useState('')
 
   const history = useHistory();
 
@@ -46,6 +47,11 @@ function App() {
     return recipe.cuisine_type === selectedType;
   })
 
+  const chefsToDisplay = chefs.filter(chef => {
+    if (chef.first_name.toLowerCase().includes(search)) return true;
+    else if (chef.last_name.toLowerCase().includes(search)) return true;
+  })
+
   function handleDeleteRecipe(deletedRecipe){
     const recipesToDisplay = recipes.filter(recipe => recipe.id !== deletedRecipe.id)
     setRecipes(recipesToDisplay)
@@ -70,7 +76,7 @@ function App() {
             <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipesToDisplay} chefs={chefs} onDeleteRecipe={handleDeleteRecipe}/>
         </Route>
         <Route exact path="/chefs">
-            <DisplayCards inRecipes={false} collectionData={chefs}/>
+            <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay}/>
         </Route>
         <Route exact path="/chefs/:id">
           <CardDetails isRecipe={false} dataForDetails={chefs} recipes={recipes} />

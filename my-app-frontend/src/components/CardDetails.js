@@ -5,7 +5,9 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews }) {
     const [isHidden, setIsHidden] = useState(true)
     const { id } = useParams()
     const itemOfFocus = dataForDetails.find(item => item.id == id)
-    const reviewsOfFocus = reviews.filter(review => review.id == id)
+    const reviewsOfFocus = reviews.filter(review => review.recipe_id == id)
+
+    console.log(reviewsOfFocus)
 
     function handleEditRecipe(){
         fetch(`http://localhost:9292/recipes/${id}`, {
@@ -40,6 +42,13 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews }) {
                 <button onClick={handleEditRecipe}>✏️ Edit Recipe</button>
                 <br></br>
                 <h3 className="reviews-header">Reviews</h3>
+                {reviewsOfFocus === [] ? 
+                <>
+                    <p>"No reviews yet!"</p>
+                    {/* need to fix this */}
+                </>
+                :
+                <>
                 {reviewsOfFocus.map(review => {
                     return (
                         <div className="reviews">
@@ -48,6 +57,8 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews }) {
                         </div>
                     )
                 })}
+                </>
+                }
             </>
             :
             <>

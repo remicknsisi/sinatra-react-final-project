@@ -7,8 +7,6 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFav
     const chef = chefs.filter(chef => chef.id === chef_id)
     const fullChefName = chef[0].first_name + ' ' + chef[0].last_name
 
-    //chef IDs need tobe fixed in database 
-
     function handleDeleteRecipe(){
         fetch(`http://localhost:9292/recipes/${recipe.id}`, {
           method: 'DELETE'})
