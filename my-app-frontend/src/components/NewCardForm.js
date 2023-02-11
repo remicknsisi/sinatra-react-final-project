@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function NewCardForm ({ onSubmit }) {
+function NewCardForm ({ onSubmit, onChefSubmit }) {
 
     const [newName, setNewName] = useState('')
     const [newInstructions, setNewInstructions] = useState('')
@@ -10,6 +10,10 @@ function NewCardForm ({ onSubmit }) {
     const [newRating, setNewRating] = useState(0)
     const [newCuisineType, setNewCuisineType] = useState('')
     const [newChefId, setNewChefId] = useState(0)
+    const [newFirstName, setNewFirstName] = useState('')
+    const [newLastName, setNewLastName] = useState('')
+    const [newAge, setNewAge] = useState(0)
+    const [newChefImage, setNewChefImage] = useState('')
 
 
     function handleNameChange(e){
@@ -35,6 +39,18 @@ function NewCardForm ({ onSubmit }) {
     }
     function handleChefChange(e){
         setNewChefId(e.target.value)
+    }
+    function handleFirstNameChange(e){
+        setNewFirstName(e.target.value)
+    }
+    function handleLastNameChange(e){
+        setNewLastName(e.target.value)
+    }
+    function handleAgeChange(e){
+        setNewAge(e.target.value)
+    }
+    function handleChefImageChange(e){
+        setNewChefImage(e.target.value)
     }
 
     function handleSubmitRecipe(e){
@@ -63,8 +79,31 @@ function NewCardForm ({ onSubmit }) {
           .then(newRecipe => onSubmit(newRecipe))
     }
 
+    function handleSubmitChef(e){
+        e.preventDefault()
+
+        const newChefCard = {
+            firstName: newFirstName,
+            lastName: newLastName,
+            age: newAge,
+            image: newChefImage
+        }
+
+        fetch(`http://localhost:9292/chefs`, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(
+              newChefCard
+            )
+          })
+          .then(res => res.json())
+          .then(newChef => onChefSubmit(newChef))
+    }
+
     return (
-        <div className="form">
+    <>
+        <div className="recipe-form">
+            <h3 className="form-headers"> Enter a new recipe here: 🍝 </h3>
             <form onSubmit={handleSubmitRecipe}>
                 <input type="text" onChange={handleNameChange} value={newName} placeholder="Recipe Name" />
                 <input type="text" onChange={handleInstructionsChange} value={newInstructions} placeholder="Instructions" />
@@ -78,6 +117,18 @@ function NewCardForm ({ onSubmit }) {
                 {/* make this last option a drop down */}
             </form>
         </div>
+        <br></br>
+        <div className="chef-form">
+            <h3 className="form-headers"> Enter a new chef here: 👨‍🍳 </h3>
+            <form onSubmit={handleSubmitChef}>
+                    <input type="text" onChange={handleFirstNameChange} value={newFirstName} placeholder="First Name" />
+                    <input type="text" onChange={handleLastNameChange} value={newLastName} placeholder="Last Name" />
+                    <input type="text" onChange={handleChefImageChange} value={newChefImage} placeholder="Image URL" />
+                    <input type="number" onChange={handleAgeChange} value={newAge} placeholder="Age of Chef" />
+                    <button type="submit">Create Chef</button>
+            </form>
+        </div>
+    </>
     )
 }
 

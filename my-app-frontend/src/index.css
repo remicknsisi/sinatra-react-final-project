@@ -112,3 +112,18 @@ button:hover {
   font-weight: bolder;
   color: white;
 }
+
+.chef-form {
+  padding: 10px;
+}
+
+.recipe-form {
+  padding: 10px;
+}
+
+.form-headers {
+  background-color: antiquewhite;
+  max-width: fit-content;
+  padding: 5px;
+  border-radius: 10px
+}

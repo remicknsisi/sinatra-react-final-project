@@ -37,6 +37,11 @@ function App() {
       setRecipes([...recipes, newRecipeObj])
       history.push(`/recipes/${newRecipeObj.id}`)}
 
+  function handleSubmitChef(newChefObj){
+    setChefs([...chefs, newChefObj])
+    history.push(`/chefs/${newChefObj.id}`)
+  }
+
   function handleNewSelection(type){
       setSelectedType(type)
     }
@@ -79,13 +84,13 @@ function App() {
             <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay}/>
         </Route>
         <Route exact path="/chefs/:id">
-          <CardDetails isRecipe={false} dataForDetails={chefs} recipes={recipes} />
+          <CardDetails isRecipe={false} dataForDetails={chefs} reviews={reviews} recipes={recipes} />
         </Route>
         <Route exact path="/recipes/:id">
           <CardDetails isRecipe={true} reviews={reviews} dataForDetails={recipes} recipes={recipes} />
         </Route>
         <Route exact path="/new">
-          <NewCardForm onSubmit={handleSubmitRecipe}/>
+          <NewCardForm onSubmit={handleSubmitRecipe} onChefSubmit={handleSubmitChef}/>
         </Route>
       </Switch>
     </div>

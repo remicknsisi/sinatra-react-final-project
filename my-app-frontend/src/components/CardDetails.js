@@ -7,8 +7,6 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews }) {
     const itemOfFocus = dataForDetails.find(item => item.id == id)
     const reviewsOfFocus = reviews.filter(review => review.recipe_id == id)
 
-    console.log(reviewsOfFocus)
-
     function handleEditRecipe(){
         fetch(`http://localhost:9292/recipes/${id}`, {
             method: 'PATCH',
