@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"
 
-function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFavoriteClick,reviews }) {
+function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFavoriteClick, reviews }) {
 
     const { name, instructions, ingredients, image_url, hours, chef_id, id, isFavorited } = recipe
     const chef = chefs.filter(chef => chef.id === chef_id)

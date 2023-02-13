@@ -7,13 +7,13 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
     const [newImage, setNewImage] = useState('')
     const [newHours, setNewHours] = useState(0)
     const [newIngredients, setNewIngredients] = useState('')
-    const [newRating, setNewRating] = useState(0)
     const [newCuisineType, setNewCuisineType] = useState('')
     const [newChefId, setNewChefId] = useState(0)
     const [newFirstName, setNewFirstName] = useState('')
     const [newLastName, setNewLastName] = useState('')
     const [newAge, setNewAge] = useState(0)
     const [newChefImage, setNewChefImage] = useState('')
+    const [newBio, setNewBio] = useState('')
 
 
     function handleNameChange(e){
@@ -30,9 +30,6 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
     }
     function handleIngredientsChange(e){
         setNewIngredients(e.target.value)
-    }
-    function handleRatingChange(e){
-        setNewRating(e.target.value)
     }
     function handleCuisineTypeChange(e){
         setNewCuisineType(e.target.value)
@@ -52,6 +49,9 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
     function handleChefImageChange(e){
         setNewChefImage(e.target.value)
     }
+    function handleBioChange(e){
+        setNewBio(e.target.value)
+    }
 
     function handleSubmitRecipe(e){
         e.preventDefault()
@@ -62,7 +62,6 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
             image_url: newImage,
             hours: newHours,
             ingredients: newIngredients,
-            average_rating: newRating,
             chef_id: newChefId,
             cuisine_type: newCuisineType,
             isFavorited: false
@@ -86,7 +85,8 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
             first_name: newFirstName,
             last_name: newLastName,
             age: newAge,
-            image: newChefImage
+            image: newChefImage,
+            bio: newBio
         }
 
         fetch(`http://localhost:9292/chefs`, {
@@ -110,9 +110,8 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
                 <input type="text" onChange={handleImageChange} value={newImage} placeholder="Image URL" />
                 <input type="number" onChange={handleHoursChange} value={newHours} placeholder="Hours to Prep" />
                 <input type="text" onChange={handleIngredientsChange} value={newIngredients} placeholder="Ingredients (separated by commas)" />
-                <input type="number" onChange={handleRatingChange} value={newRating} placeholder="Rating out of 5" />
                 <input type="text" onChange={handleCuisineTypeChange} value={newCuisineType} placeholder="main, dessert, or sides?" />
-                <input type="number" onChange={handleChefChange} value={newChefId} placeholder="Chef Id" />
+                <input type="number" onChange={handleChefChange} value={newChefId} placeholder="REQUIRED: Chef Id" />
                 <button type="submit">Create Recipe</button>
                 {/* make this last option a drop down */}
             </form>
@@ -125,6 +124,7 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
                     <input type="text" onChange={handleLastNameChange} value={newLastName} placeholder="Last Name" />
                     <input type="text" onChange={handleChefImageChange} value={newChefImage} placeholder="Image URL" />
                     <input type="number" onChange={handleAgeChange} value={newAge} placeholder="Age of Chef" />
+                    <input type="text" onChange={handleBioChange} value={newBio} placeholder="Bio" />
                     <button type="submit">Create Chef</button>
             </form>
         </div>

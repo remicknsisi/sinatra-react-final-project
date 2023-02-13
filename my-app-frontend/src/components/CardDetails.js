@@ -4,43 +4,20 @@ import NewCommentForm from './NewCommentForm.js'
 import IngredientList from "./IngredientsList.js";
 import Instructions from "./Instructions.js";
 
-function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, setComment, onPostComment }) {
+function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, setComment, onPostComment, chefs }) {
     const [isHidden, setIsHidden] = useState(true)
     const { id } = useParams()
     const itemOfFocus = dataForDetails.find(item => item.id == id)
     const reviewsOfFocus = reviews.filter(review => review.recipe_id == id)
-
     const averageRating = reviewsOfFocus.map(review => review.rating).reduce((sum, value) =>  
         {return sum + value}, 0) / reviewsOfFocus.length
-    
-    // function handleEditRecipe(){
-    //     fetch(`http://localhost:9292/recipes/${id}`, {
-    //         method: 'PATCH',
-    //         headers: {"Content-Type": "application/json"},
-    //         body: JSON.stringify({
-    //             //need to figure this out here and make one for editChefs
-    //         })
-    //     })
-    //     .then(res => res.json())
-    //     .then(updatedRecipe => console.log(updatedRecipe))
-    // }
-
     const chefRecipes = recipes.filter(recipe => recipe.chef_id === itemOfFocus.id)
 
     function handleShowAll(){
         setIsHidden(!isHidden)
     }
 
-    // const instructionsList = itemOfFocus.instructions.split('. ').map(step => {
-    //     return(
-    //         <li>{step}</li>
-    //     )
-    // })
-    // const ingredientsList = itemOfFocus.ingredients.split(', ').map(ingredient => {
-    //     return(
-    //         <li>{ingredient}</li>
-    //     )
-    // })
+    console.log(itemOfFocus)
 
     return (
         <div className="card-details">
@@ -82,7 +59,7 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, set
                 <br></br>
                 <h3>Years Cooking: {itemOfFocus.years_cooking} | Age: {itemOfFocus.age}</h3>
                 <h2>Biography:</h2>
-                <p className="instructions">"bio"</p>
+                <p className="instructions">{itemOfFocus.bio}</p>
                 {isHidden ? 
                 <div>
                     <p>Show All Recipes and Ratings:</p>
@@ -102,8 +79,6 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, set
                     })}
                 </div>
                 }
-                <br></br>
-                {/* <button>✏️ Edit Chef</button> */}
             </>
             }
         </div>

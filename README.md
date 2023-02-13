@@ -21,4 +21,6 @@ https://www.istockphoto.com/vector/facade-of-restaurant-vector-flat-design-gm857
 Some funny comments that I borrowed to seed review space come from the below blog post:
 https://the-toast.net/2014/09/04/eighteen-kinds-people-comment-recipe-blog/
 
+All chef bios are courtesy of Wikipedia.
+
 And lastly, my chef images are pulled from a variety of sources by Google image search:
