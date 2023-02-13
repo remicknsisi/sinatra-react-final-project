@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"
 
-function ChefCard ({ chef, onDeleteChef }) {
+function ChefCard ({ chef, onDeleteChef,recipes }) {
 
     const { first_name, last_name, age, image, id, years_cooking } = chef
 

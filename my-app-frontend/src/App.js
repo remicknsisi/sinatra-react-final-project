@@ -89,7 +89,7 @@ function App() {
             <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipesToDisplay} chefs={chefs} onDeleteRecipe={handleDeleteRecipe} reviews={reviews}/>
         </Route>
         <Route exact path="/chefs">
-            <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay} onDeleteChef={handleDeleteChef} reviews={reviews}/>
+            <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay} recipes={recipes} onDeleteChef={handleDeleteChef} reviews={reviews}/>
         </Route>
         <Route exact path="/chefs/:id">
           <CardDetails isRecipe={false} dataForDetails={chefs} reviews={reviews} recipes={recipes} />
