@@ -15,7 +15,6 @@ function Instructions ({ recipes }) {
         <div>
             <h2 >Instructions:</h2>
                 <ol type="1" className="instructions">{instructionsList}</ol>
-                {/* <button onClick={handleEditRecipe}>✏️ Edit Recipe</button> */}
         </div>
     )
 }

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFavoriteClick, reviews }) {
 
-    const { name, instructions, ingredients, image_url, hours, chef_id, id, isFavorited } = recipe
+    const { name, image_url, hours, chef_id, id, isFavorited } = recipe
     const chef = chefs.filter(chef => chef.id === chef_id)
     const fullChefName = chef[0].first_name + ' ' + chef[0].last_name
     const reviewsOfFocus = reviews.filter(review => review.recipe_id == id)
@@ -46,8 +46,6 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFav
               })
             }
         }
-
-    //likes are lagging - why wont a re-render trigger?
 
     return (
         <div className="card">

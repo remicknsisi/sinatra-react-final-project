@@ -70,10 +70,6 @@ function App() {
     const chefsToDisplay = chefs.filter(chef => chef.id !== deletedChef.id)
     setChefs(chefsToDisplay)
 }
-  // function handleFavoriteClick(updatedRecipe){
-  //   const updatedRecipes = recipes.map(recipe => recipe.id === updatedRecipe.id ? updatedRecipe : recipe)
-  //   setRecipes(updatedRecipes)
-  // }
 
   return (
     <div className="App">

@@ -4,7 +4,7 @@ import NewCommentForm from './NewCommentForm.js'
 import IngredientList from "./IngredientsList.js";
 import Instructions from "./Instructions.js";
 
-function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, setComment, onPostComment, chefs }) {
+function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, setComment, onPostComment }) {
     const [isHidden, setIsHidden] = useState(true)
     const { id } = useParams()
     const itemOfFocus = dataForDetails.find(item => item.id == id)
