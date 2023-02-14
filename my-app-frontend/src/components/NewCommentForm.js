@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 function NewCommentForm ({ onPostComment }) {
 
     const [newComment, setNewComment] = useState('')
-    const [newRating, setNewRating] = useState(3)
+    const [newRating, setNewRating] = useState()
     const [newAuthorName, setNewAuthorName] = useState('')
 
     const { id } = useParams()

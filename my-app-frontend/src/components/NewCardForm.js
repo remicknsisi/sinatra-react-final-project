@@ -5,13 +5,13 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
     const [newName, setNewName] = useState('')
     const [newInstructions, setNewInstructions] = useState('')
     const [newImage, setNewImage] = useState('')
-    const [newHours, setNewHours] = useState(0)
+    const [newHours, setNewHours] = useState()
     const [newIngredients, setNewIngredients] = useState('')
     const [newCuisineType, setNewCuisineType] = useState('')
-    const [newChefId, setNewChefId] = useState(0)
+    const [newChefId, setNewChefId] = useState()
     const [newFirstName, setNewFirstName] = useState('')
     const [newLastName, setNewLastName] = useState('')
-    const [newAge, setNewAge] = useState(0)
+    const [newAge, setNewAge] = useState()
     const [newChefImage, setNewChefImage] = useState('')
     const [newBio, setNewBio] = useState('')
 
@@ -101,7 +101,7 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
     }
 
     return (
-    <>
+    <div className = "forms-container">
         <div className="recipe-form">
             <h3 className="form-headers"> Enter a new recipe here: 🍝 </h3>
             <form onSubmit={handleSubmitRecipe} className="recipe-form-container">
@@ -118,13 +118,17 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
                 <br></br>
                 Ingredients: <input type="text" onChange={handleIngredientsChange} value={newIngredients} placeholder="Ingredients (separated by commas)" />
                 <br></br>
-                Select Type: <input type="text" onChange={handleCuisineTypeChange} value={newCuisineType} placeholder="main, dessert, or sides?" />
+                Select Type: <select value={newCuisineType} onChange={handleCuisineTypeChange}>
+                    <option value="dessert">Desserts</option>
+                    <option value="sides">Sides</option>
+                    <option value="main">Mains</option>
+                </select>
                 <br></br>
                 *ID of Chef: <input type="number" onChange={handleChefChange} value={newChefId} />
                 <br></br>
                 <br></br>
                 <button type="submit">Create Recipe</button>
-                {/* make this cuisine type option a drop down */}
+                {/* add in a key so that users know the chef ID to enter */}
             </form>
         </div>
         <br></br>
@@ -145,7 +149,7 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
                     <button type="submit">Create Chef</button>
             </form>
         </div>
-    </>
+    </div>
     )
 }
 
