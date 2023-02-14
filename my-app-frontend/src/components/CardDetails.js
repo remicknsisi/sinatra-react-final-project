@@ -17,8 +17,6 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, set
         setIsHidden(!isHidden)
     }
 
-    console.log(itemOfFocus)
-
     return (
         <div className="card-details">
             {isRecipe ? 
@@ -62,12 +60,12 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, set
                 <p className="instructions">{itemOfFocus.bio}</p>
                 {isHidden ? 
                 <div>
-                    <p>Show All Recipes and Ratings:</p>
+                    <p>Show All Recipes by {itemOfFocus.first_name} {itemOfFocus.last_name}:</p>
                     <button onClick={() => handleShowAll()} >v</button> 
                 </div>
                 :
                 <div>
-                    <p>Hide All Recipes and Ratings:</p>
+                    <p>Hide All Recipes by {itemOfFocus.first_name} {itemOfFocus.last_name}:</p>
                     <button onClick={() => handleShowAll()} >v</button> 
                     {chefRecipes.map(chefRecipe => {
                         return(

@@ -26,7 +26,7 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFav
                   'isFavorited': false 
                 })
               })
-              .then(res => res.json)
+              .then(res => res.json())
               .then(updatedRecipe => {
                 const updatedRecipes = recipes.map(recipe => recipe.id === updatedRecipe.id ? updatedRecipe : recipe)
                 setRecipes(updatedRecipes)
@@ -39,7 +39,7 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFav
                   'isFavorited': true 
                 })
               })
-              .then(res => res.json)
+              .then(res => res.json())
               .then(updatedRecipe => {
                 const updatedRecipes = recipes.map(recipe => recipe.id === updatedRecipe.id ? updatedRecipe : recipe)
                 setRecipes(updatedRecipes)
