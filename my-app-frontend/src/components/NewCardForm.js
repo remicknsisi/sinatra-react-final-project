@@ -104,27 +104,44 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
     <>
         <div className="recipe-form">
             <h3 className="form-headers"> Enter a new recipe here: 🍝 </h3>
-            <form onSubmit={handleSubmitRecipe}>
-                <input type="text" onChange={handleNameChange} value={newName} placeholder="Recipe Name" />
-                <input type="text" onChange={handleInstructionsChange} value={newInstructions} placeholder="Instructions" />
-                <input type="text" onChange={handleImageChange} value={newImage} placeholder="Image URL" />
-                <input type="number" onChange={handleHoursChange} value={newHours} placeholder="Hours to Prep" />
-                <input type="text" onChange={handleIngredientsChange} value={newIngredients} placeholder="Ingredients (separated by commas)" />
-                <input type="text" onChange={handleCuisineTypeChange} value={newCuisineType} placeholder="main, dessert, or sides?" />
-                <input type="number" onChange={handleChefChange} value={newChefId} placeholder="REQUIRED: Chef Id" />
+            <form onSubmit={handleSubmitRecipe} className="recipe-form-container">
+                Note: * Indicates a required field.
+                <br></br>
+                <br></br>
+                Name of Recipe: <input type="text" onChange={handleNameChange} value={newName} placeholder="Recipe Name" />
+                <br></br>
+                Instructions: <input type="text" onChange={handleInstructionsChange} value={newInstructions} placeholder="Instructions" />
+                <br></br>
+                Image URL: <input type="text" onChange={handleImageChange} value={newImage} placeholder="Image URL" />
+                <br></br>
+                Hours to Prepare: <input type="number" onChange={handleHoursChange} value={newHours} placeholder="Hours to Prep" />
+                <br></br>
+                Ingredients: <input type="text" onChange={handleIngredientsChange} value={newIngredients} placeholder="Ingredients (separated by commas)" />
+                <br></br>
+                Select Type: <input type="text" onChange={handleCuisineTypeChange} value={newCuisineType} placeholder="main, dessert, or sides?" />
+                <br></br>
+                *ID of Chef: <input type="number" onChange={handleChefChange} value={newChefId} />
+                <br></br>
+                <br></br>
                 <button type="submit">Create Recipe</button>
-                {/* make this last option a drop down */}
+                {/* make this cuisine type option a drop down */}
             </form>
         </div>
         <br></br>
         <div className="chef-form">
             <h3 className="form-headers"> Enter a new chef here: 👨‍🍳 </h3>
-            <form onSubmit={handleSubmitChef}>
-                    <input type="text" onChange={handleFirstNameChange} value={newFirstName} placeholder="First Name" />
-                    <input type="text" onChange={handleLastNameChange} value={newLastName} placeholder="Last Name" />
-                    <input type="text" onChange={handleChefImageChange} value={newChefImage} placeholder="Image URL" />
-                    <input type="number" onChange={handleAgeChange} value={newAge} placeholder="Age of Chef" />
-                    <input type="text" onChange={handleBioChange} value={newBio} placeholder="Bio" />
+            <form onSubmit={handleSubmitChef} className="chef-form-container">
+                    First Name: <input type="text" onChange={handleFirstNameChange} value={newFirstName} placeholder="First Name" />
+                    <br></br>
+                    Last Name: <input type="text" onChange={handleLastNameChange} value={newLastName} placeholder="Last Name" />
+                    <br></br>
+                    Image URL: <input type="text" onChange={handleChefImageChange} value={newChefImage} placeholder="Image URL" />
+                    <br></br>
+                    Age of Chef: <input type="number" onChange={handleAgeChange} value={newAge} placeholder="Age of Chef" />
+                    <br></br>
+                    Bio: <input type="text" onChange={handleBioChange} value={newBio} placeholder="Bio" />
+                    <br></br>
+                    <br></br>
                     <button type="submit">Create Chef</button>
             </form>
         </div>

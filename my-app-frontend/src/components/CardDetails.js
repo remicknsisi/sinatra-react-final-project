@@ -30,11 +30,8 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, set
                 <br></br>
                 <div className="reviews-container">
                     <h3 className="reviews-header">Reviews</h3>
-                    {reviewsOfFocus === [] ? 
-                    <>
-                        <p>"No reviews yet!"</p>
-                        {/* need to fix this */}
-                    </>
+                    {reviewsOfFocus.length === 0 ? <p>"No reviews yet!"</p>
+                    // need to fix
                     :
                     <>
                     {reviewsOfFocus.map(review => {
