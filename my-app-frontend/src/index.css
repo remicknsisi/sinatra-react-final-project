@@ -131,9 +131,8 @@ button:hover {
 }
 
 .forms-container {
-  /* margin: auto;
-  width: 50%;
-  padding: 10px; */
+  display: flex;
+  padding: 10px;
 }
 
 .chef-form {
@@ -169,7 +168,9 @@ button:hover {
 
 .list-of-chefs {
   background-color: white;
-  padding: 5px;
+  padding: 10px;
   max-width: fit-content;
   border-radius: 10px;
+  height:fit-content;
+  padding-bottom: 20px;
 }

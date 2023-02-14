@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import ListOfChefIds from "./ListOfChefIds.js";
 
-function NewCardForm ({ onSubmit, onChefSubmit }) {
+
+function NewCardForm ({ onSubmit, onChefSubmit, chefs }) {
 
     const [newName, setNewName] = useState('')
     const [newInstructions, setNewInstructions] = useState('')
@@ -125,10 +127,9 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
                 </select>
                 <br></br>
                 *ID of Chef: <input type="number" onChange={handleChefChange} value={newChefId} />
-                <br></br>
+                <p>If you are entering a recipe by a new chef, be sure to submit the chef in the Chef form first!</p>
                 <br></br>
                 <button type="submit">Create Recipe</button>
-                {/* add in a key so that users know the chef ID to enter */}
             </form>
         </div>
         <br></br>
@@ -149,6 +150,7 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
                     <button type="submit">Create Chef</button>
             </form>
         </div>
+        <ListOfChefIds chefs={chefs}/>
     </div>
     )
 }
