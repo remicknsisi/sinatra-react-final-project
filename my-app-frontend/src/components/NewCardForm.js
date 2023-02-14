@@ -119,9 +119,9 @@ function NewCardForm ({ onSubmit, onChefSubmit }) {
                 Ingredients: <input type="text" onChange={handleIngredientsChange} value={newIngredients} placeholder="Ingredients (separated by commas)" />
                 <br></br>
                 Select Type: <select value={newCuisineType} onChange={handleCuisineTypeChange}>
-                    <option value="dessert">Desserts</option>
-                    <option value="sides">Sides</option>
-                    <option value="main">Mains</option>
+                    <option value="dessert">Dessert</option>
+                    <option value="sides">Side</option>
+                    <option value="main">Main</option>
                 </select>
                 <br></br>
                 *ID of Chef: <input type="number" onChange={handleChefChange} value={newChefId} />

@@ -5,6 +5,7 @@ import Home from "./components/Home.js"
 import DisplayCards from "./components/DisplayCards.js";
 import CardDetails from "./components/CardDetails.js";
 import NewCardForm from "./components/NewCardForm";
+import ListOfChefIds from "./components/ListOfChefIds.js";
 
 function App() {
   const [recipes, setRecipes] = useState([])
@@ -95,6 +96,8 @@ function App() {
         </Route>
         <Route exact path="/new">
           <NewCardForm onSubmit={handleSubmitRecipe} onChefSubmit={handleSubmitChef}/>
+          <br></br>
+          <ListOfChefIds chefs={chefs}/>
         </Route>
       </Switch>
     </div>
