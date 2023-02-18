@@ -4,14 +4,13 @@ import NewCommentForm from './NewCommentForm.js'
 import IngredientList from "./IngredientsList.js";
 import Instructions from "./Instructions.js";
 
-function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, setComment, onPostComment }) {
+function CardDetails ({ dataForDetails, isRecipe, reviews, comment, setComment, onPostComment }) {
     const [isHidden, setIsHidden] = useState(true)
     const { id } = useParams()
     const itemOfFocus = dataForDetails.find(item => item.id == id)
     const reviewsOfFocus = reviews.filter(review => review.recipe_id == id)
     const averageRating = reviewsOfFocus.map(review => review.rating).reduce((sum, value) =>  
         {return sum + value}, 0) / reviewsOfFocus.length
-    const chefRecipes = recipes.filter(recipe => recipe.chef_id === itemOfFocus.id)
 
     function handleShowAll(){
         setIsHidden(!isHidden)
@@ -64,7 +63,7 @@ function CardDetails ({ dataForDetails, isRecipe, recipes, reviews, comment, set
                 <div>
                     <p>Hide All Recipes by {itemOfFocus.first_name} {itemOfFocus.last_name}:</p>
                     <button onClick={() => handleShowAll()} >v</button> 
-                    {chefRecipes.map(chefRecipe => {
+                    {itemOfFocus.recipes.map(chefRecipe => {
                         return(
                             <div>
                                 <Link to={`/recipes/${chefRecipe.id}`}>{chefRecipe.name}</Link>

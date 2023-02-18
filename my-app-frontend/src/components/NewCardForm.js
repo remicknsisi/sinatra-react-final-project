@@ -126,7 +126,7 @@ function NewCardForm ({ onSubmit, onChefSubmit, chefs }) {
                     <option value="main">Main</option>
                 </select>
                 <br></br>
-                *ID of Chef: <input type="number" onChange={handleChefChange} value={newChefId} />
+                *ID of Chef: <input type="number" onChange={handleChefChange} value={newChefId} placeholder="Refer to ID KEY"/>
                 <p>If you are entering a recipe by a new chef, be sure to submit the chef in the Chef form first!</p>
                 <br></br>
                 <button type="submit">Create Recipe</button>

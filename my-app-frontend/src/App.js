@@ -88,10 +88,10 @@ function App() {
             <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay} recipes={recipes} onDeleteChef={handleDeleteChef} reviews={reviews} chefs={chefs}/>
         </Route>
         <Route exact path="/chefs/:id">
-          <CardDetails isRecipe={false} dataForDetails={chefs} reviews={reviews} recipes={recipes} />
+          <CardDetails isRecipe={false} dataForDetails={chefs} reviews={reviews} />
         </Route>
         <Route exact path="/recipes/:id">
-          <CardDetails isRecipe={true} reviews={reviews} dataForDetails={recipes} recipes={recipes} onPostComment={handlePostComment} chefs={chefs} />
+          <CardDetails isRecipe={true} reviews={reviews} dataForDetails={recipes} onPostComment={handlePostComment} chefs={chefs} />
         </Route>
         <Route exact path="/new">
           <NewCardForm chefs={chefs} onSubmit={handleSubmitRecipe} onChefSubmit={handleSubmitChef}/>
