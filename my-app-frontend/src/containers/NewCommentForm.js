@@ -19,7 +19,7 @@ function NewCommentForm ({ onPostComment }) {
             author_name: newAuthorName
         }
 
-        fetch(`http://localhost:9292/reviews`, {
+        fetch(`http://localhost:9292/recipes/${id}/reviews`, {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(
@@ -29,6 +29,7 @@ function NewCommentForm ({ onPostComment }) {
           .then(res => res.json())
           .then(newReviewObj => onPostComment(newReviewObj))
     }
+
 
     return (
         <div className="add-comment">

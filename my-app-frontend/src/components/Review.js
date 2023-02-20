@@ -1,11 +1,20 @@
 import React from "react";
 
-function Review ({ review }) {
-    const { author_name, comment, rating, recipe_id } = review
+function Review ({ review, onDeleteReview }) {
+    const { author_name, comment, rating, recipe_id, id } = review
+
+    function handleDeleteReview(){
+        fetch(`http://localhost:9292/recipes/${recipe_id}/reviews/${id}`, {
+            method: 'DELETE'})
+          .then(res => res.json())
+          .then(deletedReview => onDeleteReview(deletedReview))}
+    
 
     return (
-        <div className="review">
-            I am a review!
+        <div className="reviews">
+            <h4>{author_name} | Rating: {'⭐'.repeat(rating)}</h4>
+            <p>{comment}</p>
+            <button onClick={handleDeleteReview}>❌ Delete Review</button>
         </div>
     )
 }

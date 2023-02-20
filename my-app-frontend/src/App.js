@@ -11,7 +11,7 @@ import NewChefForm from "./containers/NewChefForm"
 function App() {
   const [recipes, setRecipes] = useState([])
   const [chefs, setChefs] = useState([])
-  const [reviews, setReviews] = useState([])
+  // const [reviews, setReviews] = useState([])
   const [selectedType, setSelectedType] = useState('all')
   const [search, setSearch] = useState('')
 
@@ -29,11 +29,11 @@ function App() {
     .then((recipeData) => setRecipes(recipeData));
   }, [])
 
-  useEffect(() => {
-    fetch("http://localhost:9292/reviews")
-    .then((res) => res.json())
-    .then((reviewData) => setReviews(reviewData));
-  }, [])
+  // useEffect(() => {
+  //   fetch("http://localhost:9292/reviews")
+  //   .then((res) => res.json())
+  //   .then((reviewData) => setReviews(reviewData));
+  // }, [])
 
   function handleSubmitRecipe (newRecipeObj){
       setRecipes([...recipes, newRecipeObj])
@@ -48,9 +48,9 @@ function App() {
       setSelectedType(type)
     }
 
-  function handlePostComment(newComment){
-    setReviews([...reviews, newComment])
-  }
+  // function handlePostComment(newComment){
+  //   setReviews([...reviews, newComment])
+  // }
 
   const recipesToDisplay = recipes.filter(recipe => {
     if (selectedType === "all") return true;
@@ -87,7 +87,7 @@ function App() {
             <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} collectionData={recipesToDisplay} onDeleteRecipe={handleDeleteRecipe} />
         </Route>
         <Route exact path="/recipes/:id">
-          <RecipeDetails onPostComment={handlePostComment}/>
+          <RecipeDetails />
         </Route>
         <Route exact path="/chefs">
             <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay} onDeleteChef={handleDeleteChef}/>

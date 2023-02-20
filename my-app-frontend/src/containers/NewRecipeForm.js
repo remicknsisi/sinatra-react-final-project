@@ -84,7 +84,7 @@ function NewRecipeForm ({ chefs, onSubmit }) {
                 <br></br>
                 Select Chef: <select value={newChefId} onChange={handleChefChange} >
                     {chefs.map(chef => 
-                        <option value={chef.id}>{chef.first_name} {chef.last_name}</option>
+                        <option key={chef.id} value={chef.id}>{chef.first_name} {chef.last_name}</option>
                         )}
                 </select>
                 <p>If you are entering a recipe by a new chef, be sure to submit the chef in the Chef form first!</p>
