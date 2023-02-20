@@ -9,7 +9,6 @@ function RecipeDetails () {
     const [recipe, setRecipe] = useState({
         reviews: []
     })
-    // const [allReviews, setAllReviews] = useState([])
     const { id } = useParams()
 
     useEffect(() => {
@@ -18,27 +17,23 @@ function RecipeDetails () {
         .then(recipeData => setRecipe(recipeData))
     }, []) 
 
-    // useEffect(() => {
-    //     fetch(`http://localhost:9292/reviews`)
-    //     .then(res => res.json())
-    //     .then(reviewData => setAllReviews(reviewData))
-    // }, []) 
-
-    function handleDeleteReview(deletedReview){
-        const reviewsToDisplay = recipe.reviews.filter(review => review.id !== deletedReview.id)
-        const recipeWithUpdatedReviews = {...recipe, reviews: reviewsToDisplay}
-        
-        setRecipe(recipeWithUpdatedReviews)
-    }
+    const comments = recipe.reviews.map(review => review)
 
     const averageRating = recipe.reviews.map(review => review.rating).reduce((sum, value) => {return sum + value}, 0) / recipe.reviews.length
 
     const reviews = recipe.reviews.map(review => <Review onDeleteReview={handleDeleteReview} key={review.id} review={review}/>)
-    //the reviews i am rendering are dependent on the recipe.reviews state, not the allReviews state.
+
+    function handleDeleteReview(deletedReview){
+        const reviewsToDisplay = recipe.reviews.filter(review => review.id !== deletedReview.id)
+        const recipeWithUpdatedReviews = {...recipe, reviews: reviewsToDisplay}
+        setRecipe(recipeWithUpdatedReviews)
+    }
 
     function handlePostComment(newComment){
-        // setAllReviews([...allReviews, newComment])
-      }
+        const reviewsToDisplay = [...comments, newComment]
+        const recipeWithUpdatedReviews = {...recipe, reviews: reviewsToDisplay}
+        setRecipe(recipeWithUpdatedReviews)
+    }
 
     return (
         <div className="card-details">
