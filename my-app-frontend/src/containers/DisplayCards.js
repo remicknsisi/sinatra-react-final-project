@@ -1,20 +1,20 @@
 import React from "react";
-import RecipeCard from './RecipeCard.js'
-import ChefCard from './ChefCard.js'
-import Filter from './Filter.js'
-import Search from './Search'
+import RecipeCard from '../components/RecipeCard.js'
+import ChefCard from '../components/ChefCard.js'
+import Filter from '../components/Filter.js'
+import Search from '../components/Search'
 
 
-function DisplayCards ({ search, setSearch, inRecipes, collectionData, onFavoriteClick, selectedType, setSelectedType, onDeleteRecipe, setRecipes, chefs, onNewSelection, onDeleteChef,reviews }) {
+function DisplayCards ({ search, setSearch, inRecipes, collectionData, selectedType, onDeleteRecipe, setRecipes, onNewSelection, onDeleteChef }) {
     return (
         <div>
             {inRecipes ? 
             <>
-                <Filter selectedType={selectedType} setSelectedType={setSelectedType} onNewSelection={onNewSelection}/>
+                <Filter selectedType={selectedType} onNewSelection={onNewSelection}/>
                 <div className="cards-container">
                     {collectionData.map(recipe => {
                     return (
-                        <RecipeCard key={recipe.id} onFavoriteClick={onFavoriteClick} chefs={chefs} setRecipes={setRecipes} recipe={recipe} onDeleteRecipe={onDeleteRecipe} reviews={reviews} recipes={collectionData}/>
+                        <RecipeCard key={recipe.id} setRecipes={setRecipes} recipe={recipe} onDeleteRecipe={onDeleteRecipe} recipes={collectionData}/>
                     )
                 })}
                 </div>

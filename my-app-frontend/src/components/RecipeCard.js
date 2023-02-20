@@ -1,29 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom"
 
-function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFavoriteClick, reviews }) {
+function RecipeCard ({ recipe, onDeleteRecipe, setRecipes, recipes }) {
 
-    const { name, image_url, hours, chef_id, id, isFavorited } = recipe
-    const chef = chefs.filter(chef => chef.id === chef_id)
-    const fullChefName = chef[0].first_name + ' ' + chef[0].last_name
-    const reviewsOfFocus = reviews.filter(review => review.recipe_id == id)
-    const averageRating = reviewsOfFocus.map(review => review.rating).reduce((sum, value) =>  
-        {return sum + value}, 0) / reviewsOfFocus.length
+    const { name, image_url, hours, id, isFavorited, reviews, chef_id } = recipe
+    const averageRating = reviews.map(review => review.rating).reduce((sum, value) =>  
+        {return sum + value}, 0) / reviews.length
 
     function handleDeleteRecipe(){
-        fetch(`http://localhost:9292/recipes/${recipe.id}`, {
+        fetch(`http://localhost:9292/chefs/${chef_id}/recipes/${id}`, {
           method: 'DELETE'})
         .then(res => res.json())
-        .then(deletedRecipe => onDeleteRecipe(deletedRecipe))}
+        .then(deletedRecipe => onDeleteRecipe(deletedRecipe))
+      }
 
     function handleClick(id){
         {recipe.isFavorited 
         ? 
-            fetch(`http://localhost:9292/recipes/${id}`, {
+            fetch(`http://localhost:9292/chefs/${recipe.chef_id}/recipes/${id}`, {
                 method: 'PATCH',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
-                  'isFavorited': false 
+                  isFavorited: false 
                 })
               })
               .then(res => res.json())
@@ -32,11 +30,11 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFav
                 setRecipes(updatedRecipes)
               })
             : 
-            fetch(`http://localhost:9292/recipes/${id}`, {
+            fetch(`http://localhost:9292/chefs/${recipe.chef_id}/recipes/${id}`, {
                 method: 'PATCH',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
-                  'isFavorited': true 
+                  isFavorited: true 
                 })
               })
               .then(res => res.json())
@@ -49,7 +47,7 @@ function RecipeCard ({ recipe, chefs, onDeleteRecipe, setRecipes, recipes, onFav
 
     return (
         <div className="card">
-            <h3>{name} by {fullChefName}</h3>
+            <h3>{name}</h3>
             <img className="card-img" src={image_url}></img>
             <br></br>
             <h4>Hours to Prepare: {hours} | Avg Rating: {'⭐'.repeat(averageRating)}</h4>

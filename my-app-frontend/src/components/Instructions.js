@@ -1,11 +1,8 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 
-function Instructions ({ recipes }) {
-    const { id } = useParams()
-    const itemOfFocus = recipes.find(recipe => recipe.id == id)
+function Instructions ({ instructions }) {
 
-    const instructionsList = itemOfFocus.instructions.split('. ').map(step => {
+    const instructionsList = instructions.split('. ').map(step => {
         return(
             <li>{step}</li>
         )

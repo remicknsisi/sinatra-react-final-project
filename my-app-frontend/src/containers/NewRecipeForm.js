@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import ListOfChefIds from "./ListOfChefIds.js";
 
-
-function NewCardForm ({ onSubmit, onChefSubmit, chefs }) {
+function NewRecipeForm ({ chefs, onSubmit }) {
 
     const [newName, setNewName] = useState('')
     const [newInstructions, setNewInstructions] = useState('')
@@ -10,13 +8,7 @@ function NewCardForm ({ onSubmit, onChefSubmit, chefs }) {
     const [newHours, setNewHours] = useState()
     const [newIngredients, setNewIngredients] = useState('')
     const [newCuisineType, setNewCuisineType] = useState('')
-    const [newChefId, setNewChefId] = useState()
-    const [newFirstName, setNewFirstName] = useState('')
-    const [newLastName, setNewLastName] = useState('')
-    const [newAge, setNewAge] = useState()
-    const [newChefImage, setNewChefImage] = useState('')
-    const [newBio, setNewBio] = useState('')
-
+    const [newChefId, setNewChefId] = useState(1)
 
     function handleNameChange(e){
         setNewName(e.target.value)
@@ -39,21 +31,6 @@ function NewCardForm ({ onSubmit, onChefSubmit, chefs }) {
     function handleChefChange(e){
         setNewChefId(e.target.value)
     }
-    function handleFirstNameChange(e){
-        setNewFirstName(e.target.value)
-    }
-    function handleLastNameChange(e){
-        setNewLastName(e.target.value)
-    }
-    function handleAgeChange(e){
-        setNewAge(e.target.value)
-    }
-    function handleChefImageChange(e){
-        setNewChefImage(e.target.value)
-    }
-    function handleBioChange(e){
-        setNewBio(e.target.value)
-    }
 
     function handleSubmitRecipe(e){
         e.preventDefault()
@@ -69,7 +46,7 @@ function NewCardForm ({ onSubmit, onChefSubmit, chefs }) {
             isFavorited: false
         }
 
-        fetch(`http://localhost:9292/recipes`, {
+        fetch(`http://localhost:9292/chefs/${newChefId}/recipes`, {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(
@@ -80,27 +57,6 @@ function NewCardForm ({ onSubmit, onChefSubmit, chefs }) {
           .then(newRecipe => onSubmit(newRecipe))
     }
 
-    function handleSubmitChef(e){
-        e.preventDefault()
-
-        const newChefCard = {
-            first_name: newFirstName,
-            last_name: newLastName,
-            age: newAge,
-            image: newChefImage,
-            bio: newBio
-        }
-
-        fetch(`http://localhost:9292/chefs`, {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(
-              newChefCard
-            )
-          })
-          .then(res => res.json())
-          .then(newChef => onChefSubmit(newChef))
-    }
 
     return (
     <div className = "forms-container">
@@ -126,33 +82,18 @@ function NewCardForm ({ onSubmit, onChefSubmit, chefs }) {
                     <option value="main">Main</option>
                 </select>
                 <br></br>
-                *ID of Chef: <input type="number" onChange={handleChefChange} value={newChefId} placeholder="Refer to ID KEY"/>
+                Select Chef: <select value={newChefId} onChange={handleChefChange} >
+                    {chefs.map(chef => 
+                        <option value={chef.id}>{chef.first_name} {chef.last_name}</option>
+                        )}
+                </select>
                 <p>If you are entering a recipe by a new chef, be sure to submit the chef in the Chef form first!</p>
                 <br></br>
                 <button type="submit">Create Recipe</button>
             </form>
         </div>
-        <br></br>
-        <div className="chef-form">
-            <h3 className="form-headers"> Enter a new chef here: 👨‍🍳 </h3>
-            <form onSubmit={handleSubmitChef} className="chef-form-container">
-                    First Name: <input type="text" onChange={handleFirstNameChange} value={newFirstName} placeholder="First Name" />
-                    <br></br>
-                    Last Name: <input type="text" onChange={handleLastNameChange} value={newLastName} placeholder="Last Name" />
-                    <br></br>
-                    Image URL: <input type="text" onChange={handleChefImageChange} value={newChefImage} placeholder="Image URL" />
-                    <br></br>
-                    Age of Chef: <input type="number" onChange={handleAgeChange} value={newAge} placeholder="Age of Chef" />
-                    <br></br>
-                    Bio: <input type="text" onChange={handleBioChange} value={newBio} placeholder="Bio" />
-                    <br></br>
-                    <br></br>
-                    <button type="submit">Create Chef</button>
-            </form>
-        </div>
-        <ListOfChefIds chefs={chefs}/>
     </div>
     )
 }
 
-export default NewCardForm;
+export default NewRecipeForm;

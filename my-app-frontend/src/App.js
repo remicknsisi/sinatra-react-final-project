@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import NavBar from "./components/NavBar.js";
 import Home from "./components/Home.js"
-import DisplayCards from "./components/DisplayCards.js";
-import CardDetails from "./components/CardDetails.js";
-import NewCardForm from "./components/NewCardForm";
+import DisplayCards from "./containers/DisplayCards.js";
+import ChefDetails from "./containers/ChefDetails.js";
+import RecipeDetails from "./containers/RecipeDetails.js";
+import NewRecipeForm from "./containers/NewRecipeForm"
+import NewChefForm from "./containers/NewChefForm"
 
 function App() {
   const [recipes, setRecipes] = useState([])
@@ -52,7 +54,7 @@ function App() {
 
   const recipesToDisplay = recipes.filter(recipe => {
     if (selectedType === "all") return true;
-    else if (selectedType === "favorite") return recipe.isFavorited == true;
+    else if (selectedType === "favorite") return recipe.isFavorited === true;
     return recipe.cuisine_type === selectedType;
   })
 
@@ -82,19 +84,20 @@ function App() {
             <Home/>
         </Route>
         <Route exact path="/recipes">
-            <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} setSelectedType={setSelectedType} collectionData={recipesToDisplay} chefs={chefs} onDeleteRecipe={handleDeleteRecipe} reviews={reviews}/>
-        </Route>
-        <Route exact path="/chefs">
-            <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay} recipes={recipes} onDeleteChef={handleDeleteChef} reviews={reviews} chefs={chefs}/>
-        </Route>
-        <Route exact path="/chefs/:id">
-          <CardDetails isRecipe={false} dataForDetails={chefs} reviews={reviews} />
+            <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} collectionData={recipesToDisplay} onDeleteRecipe={handleDeleteRecipe} />
         </Route>
         <Route exact path="/recipes/:id">
-          <CardDetails isRecipe={true} reviews={reviews} dataForDetails={recipes} onPostComment={handlePostComment} chefs={chefs} />
+          <RecipeDetails onPostComment={handlePostComment}/>
+        </Route>
+        <Route exact path="/chefs">
+            <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay} onDeleteChef={handleDeleteChef}/>
+        </Route>
+        <Route exact path="/chefs/:id">
+          <ChefDetails />
         </Route>
         <Route exact path="/new">
-          <NewCardForm chefs={chefs} onSubmit={handleSubmitRecipe} onChefSubmit={handleSubmitChef}/>
+          <NewRecipeForm chefs={chefs} onSubmit={handleSubmitRecipe} />
+          <NewChefForm onChefSubmit={handleSubmitChef} />
           <br></br>
         </Route>
       </Switch>
