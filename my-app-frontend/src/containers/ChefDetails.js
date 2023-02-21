@@ -30,12 +30,12 @@ function ChefDetails () {
                 <h2>Biography:</h2>
                 <p className="instructions">{chef.bio}</p>
                 {isHidden ? 
-                <div>
+                <div className="recipes-container">
                     <p>Show All Recipes by {chef.first_name} {chef.last_name}:</p>
                     <button onClick={() => handleShowAll()} >v</button> 
                 </div>
                 :
-                <div>
+                <div className="recipes-container">
                     <p>Hide All Recipes by {chef.first_name} {chef.last_name}:</p>
                     <button onClick={() => handleShowAll()} >v</button> 
                     {recipes}

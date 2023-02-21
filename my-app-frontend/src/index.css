@@ -96,6 +96,21 @@
   text-align: left;
 }
 
+.recipes-container {
+  border-radius: 50px;
+  border: 2px dotted red;
+  padding: 20px
+}
+
+.recipes {
+  background-color: white;
+  font-size:medium;
+  padding: 5px;
+  font-weight: bold;
+  border-radius: 50px;
+
+}
+
 .ingredients {
   text-align: left;
   display: inline-block;

@@ -5,7 +5,7 @@ function Recipe ({ recipe }) {
     const { name, hours, id } = recipe
 
     return (
-        <div className="recipe">
+        <div className="recipes">
             <Link to={`/recipes/${id}`}>{name}</Link>
             <br/>
             Hours to Prepare: {hours}
