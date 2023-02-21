@@ -11,7 +11,6 @@ import NewChefForm from "./containers/NewChefForm"
 function App() {
   const [recipes, setRecipes] = useState([])
   const [chefs, setChefs] = useState([])
-  // const [reviews, setReviews] = useState([])
   const [selectedType, setSelectedType] = useState('all')
   const [search, setSearch] = useState('')
 
@@ -29,12 +28,6 @@ function App() {
     .then((recipeData) => setRecipes(recipeData));
   }, [])
 
-  // useEffect(() => {
-  //   fetch("http://localhost:9292/reviews")
-  //   .then((res) => res.json())
-  //   .then((reviewData) => setReviews(reviewData));
-  // }, [])
-
   function handleSubmitRecipe (newRecipeObj){
       setRecipes([...recipes, newRecipeObj])
       history.push(`/recipes/${newRecipeObj.id}`)}
@@ -47,10 +40,6 @@ function App() {
   function handleNewSelection(type){
       setSelectedType(type)
     }
-
-  // function handlePostComment(newComment){
-  //   setReviews([...reviews, newComment])
-  // }
 
   const recipesToDisplay = recipes.filter(recipe => {
     if (selectedType === "all") return true;
@@ -66,12 +55,17 @@ function App() {
   function handleDeleteRecipe(deletedRecipe){
     const recipesToDisplay = recipes.filter(recipe => recipe.id !== deletedRecipe.id)
     setRecipes(recipesToDisplay)
-}
+  }
 
   function handleDeleteChef(deletedChef){
-    const chefsToDisplay = chefs.filter(chef => chef.id !== deletedChef.id)
-    setChefs(chefsToDisplay)
-}
+      const chefsToDisplay = chefs.filter(chef => chef.id !== deletedChef.id)
+      setChefs(chefsToDisplay)
+  }
+
+  function handleClickFavorite(updatedRecipe){
+    const updatedRecipes = recipes.map(recipe => recipe.id === updatedRecipe.id ? updatedRecipe : recipe)
+    setRecipes(updatedRecipes)
+  }
 
   return (
     <div className="App">
@@ -84,7 +78,7 @@ function App() {
             <Home/>
         </Route>
         <Route exact path="/recipes">
-            <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} collectionData={recipesToDisplay} onDeleteRecipe={handleDeleteRecipe} />
+            <DisplayCards onClickFavorite={handleClickFavorite} inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} collectionData={recipesToDisplay} onDeleteRecipe={handleDeleteRecipe} />
         </Route>
         <Route exact path="/recipes/:id">
           <RecipeDetails />

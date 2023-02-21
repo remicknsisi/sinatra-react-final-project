@@ -39,7 +39,7 @@ function RecipeDetails () {
         <div className="card-details">
             <> 
                 <h1>{recipe.name}</h1>
-                <img className="card-img" src={recipe.image_url}></img>
+                <img className="card-img-food" src={recipe.image_url}></img>
                 <br></br>
                 <h3>Hours to Prepare: {recipe.hours} | Average Rating: {'⭐'.repeat(Math.round(averageRating))}</h3>
                 {/* <IngredientList ingredients={recipe.ingredients} />

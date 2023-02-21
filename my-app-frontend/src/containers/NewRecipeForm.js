@@ -63,8 +63,6 @@ function NewRecipeForm ({ chefs, onSubmit }) {
         <div className="recipe-form">
             <h3 className="form-headers"> Enter a new recipe here: 🍝 </h3>
             <form onSubmit={handleSubmitRecipe} className="recipe-form-container">
-                Note: * Indicates a required field.
-                <br></br>
                 <br></br>
                 Name of Recipe: <input type="text" onChange={handleNameChange} value={newName} placeholder="Recipe Name" />
                 <br></br>

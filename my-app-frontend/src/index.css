@@ -64,16 +64,20 @@
 }
 
 .card {
-  max-width: 500px;
   background-color: antiquewhite;
   padding: 10px;
   border: 2px dotted red;
   text-align: center;
 }
 
-.card-img {
+.card-img-food {
   width: 341.5px;
   height: 512px;
+}
+
+.chef-card-img {
+  width: 341.5px;
+  height: auto;
 }
 
 .fav-btn {

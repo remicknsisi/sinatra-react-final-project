@@ -6,8 +6,6 @@ function ChefDetails () {
     const [chef, setChef] = useState({
         recipes: []
     })
-    const [recipeFormIsHidden, setRecipeFormIsHidden] = useState(true)
-    //place recipe form on this page
     const [isHidden, setIsHidden] = useState(true)
     const { id } = useParams()
 
@@ -24,7 +22,7 @@ function ChefDetails () {
     }
 
     return (
-        <div className="chef-details">
+        <div className="card-details">
                 <h2>{chef.first_name} {chef.last_name}</h2>
                 <img className="chef-card-img" src={chef.image}></img>
                 <br></br>

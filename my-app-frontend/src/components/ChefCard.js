@@ -14,7 +14,7 @@ function ChefCard ({ chef, onDeleteChef }) {
     return (
         <div className="card">
             <h3>{first_name} {last_name}</h3>
-            <img className="card-img" src={image}></img>
+            <img className="chef-card-img" src={image}></img>
             <br></br>
             <h4>Years Cooking: {years_cooking} | Age: {age}</h4>
             <Link to={`/chefs/${id}`}>Read More</Link>
