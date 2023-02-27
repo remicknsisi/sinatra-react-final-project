@@ -28,7 +28,7 @@ function ChefDetails () {
                 <br></br>
                 <h3>Years Cooking: {chef.years_cooking} | Age: {chef.age}</h3>
                 <h2>Biography:</h2>
-                <p className="instructions">{chef.bio}</p>
+                <p className="bio">{chef.bio}</p>
                 {isHidden ? 
                 <div className="recipes-container">
                     <p>Show All Recipes by {chef.first_name} {chef.last_name}:</p>

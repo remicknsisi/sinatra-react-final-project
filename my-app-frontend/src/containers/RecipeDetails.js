@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import NewCommentForm from './NewCommentForm.js';
 import Review from "../components/Review.js";
-import IngredientList from "../components/IngredientsList.js";
-import Instructions from "../components/Instructions.js";
 
 function RecipeDetails () {
     const [recipe, setRecipe] = useState({
@@ -42,17 +40,28 @@ function RecipeDetails () {
                 <img className="card-img-food" src={recipe.image_url}></img>
                 <br></br>
                 <h3>Hours to Prepare: {recipe.hours} | Average Rating: {'⭐'.repeat(Math.round(averageRating))}</h3>
-                {/* <IngredientList ingredients={recipe.ingredients} />
-                <Instructions instructions={recipe.instructions} /> */}
+                <h2 className="ingredients-container">Ingredients:</h2>
+                    <ul className="ingredients">
+                        {!recipe.ingredients ? console.log('Loading Ingredients...') : recipe.ingredients.split(', ').map(ingredient => {
+                            return (<li>{ingredient}</li>)
+                        })}
+                    </ul>
+                <br></br>
+                <h2 >Instructions:</h2>
+                    <ol type="1" className="instructions">
+                        {!recipe.instructions ? console.log('Loading Instructions...') : recipe.instructions.split('. ').map(step => {
+                            return(<li>{step}</li>)
+                        })}
+                    </ol>
                 <br></br>
                 <div className="reviews-container">
                     <h3 className="reviews-header">Reviews</h3>
-                    {recipe.reviews.length === 0 ? <p>"No reviews yet!"</p>
-                    // need to fix
-                    :
+                    {!!recipe.reviews.length ? 
                     <>
                     {reviews}
                     </>
+                    :
+                    console.log('No reviews yet!')
                     }
                 </div>
                 <NewCommentForm onPostComment={handlePostComment}/>
@@ -60,5 +69,6 @@ function RecipeDetails () {
         </div>
     )
 }
+
 
 export default RecipeDetails;

@@ -27,7 +27,12 @@ function NewCommentForm ({ onPostComment }) {
             )
           })
           .then(res => res.json())
-          .then(newReviewObj => onPostComment(newReviewObj))
+          .then(newReviewObj => {
+            onPostComment(newReviewObj)
+            setNewComment('')
+            setNewRating()
+            setNewAuthorName('')
+        })
     }
 
 

@@ -28,7 +28,10 @@ function App() {
     .then((recipeData) => setRecipes(recipeData));
   }, [])
 
+  // no need to store recipes in state if we are accessing it via chefs
+
   function handleSubmitRecipe (newRecipeObj){
+    console.log(newRecipeObj)
       setRecipes([...recipes, newRecipeObj])
       history.push(`/recipes/${newRecipeObj.id}`)}
 
@@ -46,6 +49,9 @@ function App() {
     else if (selectedType === "favorite") return recipe.isFavorited === true;
     return recipe.cuisine_type === selectedType;
   })
+  //this would need to move to details page of a specific component
+  //add a filter functionality from a chef's page to utilize that relationship
+  //will change how i display and how I add a recipe
 
   const chefsToDisplay = chefs.filter(chef => {
     if (chef.first_name.toLowerCase().includes(search)) return true;
@@ -92,6 +98,8 @@ function App() {
         <Route exact path="/new">
           <NewRecipeForm chefs={chefs} onSubmit={handleSubmitRecipe} />
           <NewChefForm onChefSubmit={handleSubmitChef} />
+          {/* add specific routes for both models recipe / chefs eg recipe/new chefs/new */}
+            {/* if I route from a chef details page make sure to use nested route (/chefs/chef id/recipes/new) */}
           <br></br>
         </Route>
       </Switch>
