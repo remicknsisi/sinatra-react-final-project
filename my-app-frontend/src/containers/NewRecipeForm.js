@@ -54,7 +54,11 @@ function NewRecipeForm ({ chefs, onSubmit }) {
             )
           })
           .then(res => res.json())
-          .then(newRecipe => onSubmit(newRecipe))
+          .then(newRecipe => {
+            const chef = chefs.find(chef => chef.id === newRecipe.chef_id)
+            const chefUpdatedRecipes = [...chef.recipes, newRecipe]
+            const updatedChef = {...chef, recipes: chefUpdatedRecipes}
+            onSubmit(updatedChef, newRecipe.id)})
     }
 
 

@@ -33,13 +33,10 @@ function App() {
     else if (chef.last_name.toLowerCase().includes(search)) return true;
   })
 
-  function handleSubmitRecipe (newRecipeObj){
-    const chef = chefs.find(chef => chef.id === newRecipeObj.chef_id)
-    const chefUpdatedRecipes = chef.recipes.map(recipe => recipe.id === newRecipeObj.id ? newRecipeObj : recipe)    
-    const updatedChef = {...chef, recipes: chefUpdatedRecipes}
+  function handleSubmitRecipe (updatedChef, id){
     const chefsWithUpdatedRecipes = chefs.map(chef => chef.id === updatedChef.id ? updatedChef : chef)
     setChefs(chefsWithUpdatedRecipes)
-    history.push(`/chefs/${newRecipeObj.chef_id}/recipes/${newRecipeObj.id}`)
+    history.push(`/chefs/${updatedChef.id}/recipes/${id}`)
     }
   function handleSubmitChef(newChefObj){
     setChefs([...chefs, newChefObj])
