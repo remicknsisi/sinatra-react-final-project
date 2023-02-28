@@ -1,19 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom"
 
-function RecipeCard ({ setChefs, recipe, chefs, onDeleteRecipe, onClickFavorite }) {
+function RecipeCard ({ recipe, onDeleteRecipe, onClickFavorite, reviews }) {
 
-    const { name, image_url, hours, id, isFavorited, reviews, chef_id } = recipe
-    // const averageRating = reviews.map(review => review.rating).reduce((sum, value) =>  
-    //     {return sum + value}, 0) / reviews.length
+    const { name, image_url, hours, id, isFavorited, chef_id } = recipe
+    const reviewsOfFocus = reviews.filter(review => review.recipe_id === id ? review : null)
+    const averageRating = reviewsOfFocus.map(review => review.rating).reduce((sum, value) =>  
+        {return sum + value}, 0) / reviewsOfFocus.length
+    
 
     function handleDeleteRecipe(){
         fetch(`http://localhost:9292/recipes/${recipe.id}`, {
           method: 'DELETE'})
         .then(res => res.json())
-        .then(deletedRecipe => {
-          onDeleteRecipe(deletedRecipe)
-        }
+        .then(deletedRecipe => onDeleteRecipe(deletedRecipe)
         )
     }
 
@@ -29,22 +29,14 @@ function RecipeCard ({ setChefs, recipe, chefs, onDeleteRecipe, onClickFavorite 
                .then(updatedRecipe => onClickFavorite(updatedRecipe)
               )
       }
-//add edit function for another attribute(s)
+//add edit function for another attribute(s) => add same func as for chefs 
 
     return (
         <div className="card">
             <h3>{name}</h3>
             <img className="card-img-food" src={image_url}></img>
             <br></br>
-            {/* <h4>Hours to Prepare: {hours} | Avg Rating: {'⭐'.repeat(averageRating)}</h4> */}
-            {/* <h4>Hours to Prepare: {hours} | Avg Rating: {
-            !reviews 
-            ? 
-            null 
-            : 
-            '⭐'.repeat(reviews.map(review => review.rating).reduce((sum, value) =>  
-            {return sum + value}, 0) / reviews.length)
-            }</h4> */}
+            <h4>Hours to Prepare: {hours} | Avg Rating: {'⭐'.repeat(averageRating)}</h4>
             <Link to={`/chefs/${chef_id}/recipes/${id}`}>Read More</Link>
             <br></br>
             <br></br>

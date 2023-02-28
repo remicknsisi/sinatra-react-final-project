@@ -9,7 +9,6 @@ function NewRecipeForm ({ chefs, onSubmit }) {
     const [newHours, setNewHours] = useState()
     const [newIngredients, setNewIngredients] = useState('')
     const [newCuisineType, setNewCuisineType] = useState('')
-    // const [newChefId, setNewChefId] = useState(1)
 
     const { chef_id } = useParams()
     const chef = chefs.find(chef => chef.id == chef_id)
@@ -32,9 +31,6 @@ function NewRecipeForm ({ chefs, onSubmit }) {
     function handleCuisineTypeChange(e){
         setNewCuisineType(e.target.value)
     }
-    // function handleChefChange(e){
-    //     setNewChefId(e.target.value)
-    // }
 
     function handleSubmitRecipe(e){
         e.preventDefault()
@@ -86,11 +82,6 @@ function NewRecipeForm ({ chefs, onSubmit }) {
                 <br></br>
                 By Chef: {chef.first_name} {chef.last_name}
                 <br></br>
-                {/* Select Chef: <select value={newChefId} onChange={handleChefChange} >
-                    {chefs.map(chef => 
-                        <option key={chef.id} value={chef.id}>{chef.first_name} {chef.last_name}</option>
-                        )}
-                </select> */}
                 <br></br>
                 <button type="submit">Create Recipe</button>
             </form>

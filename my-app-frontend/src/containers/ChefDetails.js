@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import Recipe from "../components/Recipe.js"
+import EditChefForm from "../components/EditChefForm"
 
-function ChefDetails () {
+
+function ChefDetails ({onEditChefSubmit}) {
     const [chef, setChef] = useState({
         recipes: []
     })
@@ -41,6 +43,11 @@ function ChefDetails () {
                     {recipes}
                 </div>}
                 <Link to={`/chefs/${chef.id}/recipes/new`}>Add New Recipe for this Chef</Link>
+                <br></br>
+                <br></br>
+                Have some changes you want to make? Edit this chef here: ✏️ 
+                <EditChefForm chef={chef} onEditChefSubmit={onEditChefSubmit}/>
+
         </div>
     )
 }

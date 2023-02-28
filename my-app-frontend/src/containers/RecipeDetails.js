@@ -43,14 +43,14 @@ function RecipeDetails () {
                 <h2 className="ingredients-container">Ingredients:</h2>
                     <ul className="ingredients">
                         {!recipe.ingredients ? null : recipe.ingredients.split(', ').map(ingredient => {
-                            return (<li>{ingredient}</li>)
+                            return (<li key={ingredient}>{ingredient}</li>)
                         })}
                     </ul>
                 <br></br>
                 <h2 >Instructions:</h2>
                     <ol type="1" className="instructions">
                         {!recipe.instructions ? null : recipe.instructions.split('. ').map(step => {
-                            return(<li>{step}</li>)
+                            return(<li key={step}>{step}</li>)
                         })}
                     </ol>
                 <br></br>

@@ -22,6 +22,7 @@ function App() {
   }, [])
 
   const recipes = chefs.flatMap(chef => chef.recipes)
+  const reviews = chefs.flatMap(chef => chef.reviews)
   const recipesToDisplay = recipes.filter(recipe => {
     if (selectedType === "all") return true;
     else if (selectedType === "favorite") return recipe.isFavorited === true;
@@ -33,7 +34,11 @@ function App() {
   })
 
   function handleSubmitRecipe (newRecipeObj){
-    setChefs([...chefs])
+    const chef = chefs.find(chef => chef.id === newRecipeObj.chef_id)
+    const chefUpdatedRecipes = chef.recipes.map(recipe => recipe.id === newRecipeObj.id ? newRecipeObj : recipe)    
+    const updatedChef = {...chef, recipes: chefUpdatedRecipes}
+    const chefsWithUpdatedRecipes = chefs.map(chef => chef.id === updatedChef.id ? updatedChef : chef)
+    setChefs(chefsWithUpdatedRecipes)
     history.push(`/chefs/${newRecipeObj.chef_id}/recipes/${newRecipeObj.id}`)
     }
   function handleSubmitChef(newChefObj){
@@ -65,7 +70,10 @@ function App() {
     setChefs(chefsWithUpdatedRecipes)
   }
 
-  //add a filter functionality from a chef's page to utilize that relationship
+  function handleEditChefSubmit(updatedChef){
+    const updatedChefs = chefs.map(chef => chef.id === updatedChef.id ? updatedChef : chef)
+    setChefs(updatedChefs)
+  }
 
   return (
     <div className="App">
@@ -78,7 +86,7 @@ function App() {
             <Home/>
         </Route>
         <Route exact path="/recipes">
-            <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} selectedType={selectedType} recipes={recipesToDisplay} setChefs={setChefs} chefs={chefs} onDeleteRecipe={handleDeleteRecipe} onClickFavorite={handleClickFavorite}/>
+            <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} selectedType={selectedType} recipes={recipesToDisplay} onDeleteRecipe={handleDeleteRecipe} reviews={reviews} onClickFavorite={handleClickFavorite}/>
         </Route>
         <Route path="/chefs/:chef_id/recipes/new">
           <NewRecipeForm chefs={chefs} onSubmit={handleSubmitRecipe}/>
@@ -94,7 +102,7 @@ function App() {
             <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay} onDeleteChef={handleDeleteChef}/>
         </Route>
         <Route exact path="/chefs/:id">
-          <ChefDetails />
+          <ChefDetails onEditChefSubmit={handleEditChefSubmit}/>
         </Route>
       </Switch>
     </div>
