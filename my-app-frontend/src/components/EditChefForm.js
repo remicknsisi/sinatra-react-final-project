@@ -51,20 +51,20 @@ function EditChefForm ({ chef, onEditChefSubmit }) {
     return (
         <div className="edit-chef-form">
             <form onSubmit={handleEditChef} className="chef-form-container">
-                    First Name: ✏️ <input type="text" onChange={handleFirstNameChange} value={newFirstName} placeholder="First Name" />
+                    First Name: <input type="text" onChange={handleFirstNameChange} value={newFirstName} placeholder="First Name" />
                     <br></br>
-                    Last Name: ✏️ <input type="text" onChange={handleLastNameChange} value={newLastName} placeholder="Last Name" />
+                    Last Name: <input type="text" onChange={handleLastNameChange} value={newLastName} placeholder="Last Name" />
                     <br></br>
-                    Image URL: ✏️ <input type="text" onChange={handleChefImageChange} value={newChefImage} placeholder="Image URL" />
+                    Image URL: <input type="text" onChange={handleChefImageChange} value={newChefImage} placeholder="Image URL" />
                     <br></br>
-                    Age of Chef: ✏️ <input type="number" onChange={handleAgeChange} value={newAge} placeholder="Age of Chef" />
+                    Age of Chef: <input type="number" onChange={handleAgeChange} value={newAge} placeholder="Age of Chef" />
                     <br></br>
-                    Bio: ✏️ <input type="text" onChange={handleBioChange} value={newBio} placeholder="Bio" />
+                    Bio: <input type="text" onChange={handleBioChange} value={newBio} placeholder="Bio" />
                     <br></br>
-                    Years Cooking: ✏️ <input type="text" onChange={handleNewYearsCooking} value={newYearsCooking} placeholder="Years Cooking" />
+                    Years Cooking: <input type="text" onChange={handleNewYearsCooking} value={newYearsCooking} placeholder="Years Cooking" />
                     <br></br>
                     <br></br>
-                <button type="submit">Finish Editing Chef</button>
+                <button type="submit">Finish Editing Chef ✏️ </button>
             </form>
         </div>
     )

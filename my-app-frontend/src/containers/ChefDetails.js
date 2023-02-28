@@ -41,11 +41,13 @@ function ChefDetails ({onEditChefSubmit}) {
                     <p>Hide All Recipes by {chef.first_name} {chef.last_name}:</p>
                     <button onClick={() => handleShowAll()} >v</button> 
                     {recipes}
+                    <br></br>
+                    <Link to={`/chefs/${chef.id}/recipes/new`}> + Add New Recipe for this Chef</Link>
                 </div>}
-                <Link to={`/chefs/${chef.id}/recipes/new`}>Add New Recipe for this Chef</Link>
                 <br></br>
                 <br></br>
-                Have some changes you want to make? Edit this chef here: ✏️ 
+                <br></br>
+                <p className='edit-form-header'>Have some changes you want to make? Edit this chef here:</p>
                 <EditChefForm chef={chef} onEditChefSubmit={onEditChefSubmit}/>
 
         </div>
