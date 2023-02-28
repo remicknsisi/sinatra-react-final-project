@@ -9,7 +9,6 @@ import NewRecipeForm from "./containers/NewRecipeForm"
 import NewChefForm from "./containers/NewChefForm"
 
 function App() {
-  const [recipes, setRecipes] = useState([])
   const [chefs, setChefs] = useState([])
   const [selectedType, setSelectedType] = useState('all')
   const [search, setSearch] = useState('')
@@ -22,56 +21,51 @@ function App() {
     .then((chefData) => setChefs(chefData));
   }, [])
 
-  useEffect(() => {
-    fetch("http://localhost:9292/recipes")
-    .then((res) => res.json())
-    .then((recipeData) => setRecipes(recipeData));
-  }, [])
-
-  // no need to store recipes in state if we are accessing it via chefs
-
-  function handleSubmitRecipe (newRecipeObj){
-    console.log(newRecipeObj)
-      setRecipes([...recipes, newRecipeObj])
-      history.push(`/recipes/${newRecipeObj.id}`)}
-
-  function handleSubmitChef(newChefObj){
-    setChefs([...chefs, newChefObj])
-    history.push(`/chefs/${newChefObj.id}`)
-  }
-
-  function handleNewSelection(type){
-      setSelectedType(type)
-    }
-
+  const recipes = chefs.flatMap(chef => chef.recipes)
   const recipesToDisplay = recipes.filter(recipe => {
     if (selectedType === "all") return true;
     else if (selectedType === "favorite") return recipe.isFavorited === true;
     return recipe.cuisine_type === selectedType;
   })
-  //this would need to move to details page of a specific component
-  //add a filter functionality from a chef's page to utilize that relationship
-  //will change how i display and how I add a recipe
-
   const chefsToDisplay = chefs.filter(chef => {
     if (chef.first_name.toLowerCase().includes(search)) return true;
     else if (chef.last_name.toLowerCase().includes(search)) return true;
   })
 
-  function handleDeleteRecipe(deletedRecipe){
-    const recipesToDisplay = recipes.filter(recipe => recipe.id !== deletedRecipe.id)
-    setRecipes(recipesToDisplay)
+  function handleSubmitRecipe (newRecipeObj){
+    setChefs([...chefs])
+    history.push(`/chefs/${newRecipeObj.chef_id}/recipes/${newRecipeObj.id}`)
+    }
+  function handleSubmitChef(newChefObj){
+    setChefs([...chefs, newChefObj])
+    history.push(`/chefs/${newChefObj.id}`)
   }
 
   function handleDeleteChef(deletedChef){
       const chefsToDisplay = chefs.filter(chef => chef.id !== deletedChef.id)
       setChefs(chefsToDisplay)
   }
+  function handleDeleteRecipe(deletedRecipe){
+      const chef = chefs.find(chef => chef.id === deletedRecipe.chef_id)
+      const chefUpdatedRecipes = chef.recipes.filter(recipe => recipe.id !== deletedRecipe.id)
+      const updatedChef = {...chef, recipes: chefUpdatedRecipes}
+      const chefsWithUpdatedRecipes = chefs.map(chef => chef.id === updatedChef.id ? updatedChef : chef)
+      setChefs(chefsWithUpdatedRecipes)
+  }
+
+  function handleNewSelection(type){
+      setSelectedType(type)
+    }
 
   function handleClickFavorite(updatedRecipe){
-    const updatedRecipes = recipes.map(recipe => recipe.id === updatedRecipe.id ? updatedRecipe : recipe)
-    setRecipes(updatedRecipes)
+    const chef = chefs.find(chef => chef.id === updatedRecipe.chef_id)
+    const chefUpdatedRecipes = chef.recipes.map(recipe => recipe.id === updatedRecipe.id ? updatedRecipe : recipe)
+    const updatedChef = {...chef, recipes: chefUpdatedRecipes}
+    const chefsWithUpdatedRecipes = chefs.map(chef => chef.id === updatedChef.id ? updatedChef : chef)
+    setChefs(chefsWithUpdatedRecipes)
   }
+
+  //add a filter functionality from a chef's page to utilize that relationship
 
   return (
     <div className="App">
@@ -84,23 +78,23 @@ function App() {
             <Home/>
         </Route>
         <Route exact path="/recipes">
-            <DisplayCards onClickFavorite={handleClickFavorite} inRecipes={true} onNewSelection={handleNewSelection} setRecipes={setRecipes} selectedType={selectedType} collectionData={recipesToDisplay} onDeleteRecipe={handleDeleteRecipe} />
+            <DisplayCards inRecipes={true} onNewSelection={handleNewSelection} selectedType={selectedType} recipes={recipesToDisplay} setChefs={setChefs} chefs={chefs} onDeleteRecipe={handleDeleteRecipe} onClickFavorite={handleClickFavorite}/>
         </Route>
-        <Route exact path="/recipes/:id">
+        <Route path="/chefs/:chef_id/recipes/new">
+          <NewRecipeForm chefs={chefs} onSubmit={handleSubmitRecipe}/>
+        </Route>
+        <Route exact path="/chefs/:chef_id/recipes/:id">
           <RecipeDetails />
+        </Route>
+        <Route exact path="/chefs/new">
+          <NewChefForm onChefSubmit={handleSubmitChef} />
+          <br></br>
         </Route>
         <Route exact path="/chefs">
             <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay} onDeleteChef={handleDeleteChef}/>
         </Route>
         <Route exact path="/chefs/:id">
           <ChefDetails />
-        </Route>
-        <Route exact path="/new">
-          <NewRecipeForm chefs={chefs} onSubmit={handleSubmitRecipe} />
-          <NewChefForm onChefSubmit={handleSubmitChef} />
-          {/* add specific routes for both models recipe / chefs eg recipe/new chefs/new */}
-            {/* if I route from a chef details page make sure to use nested route (/chefs/chef id/recipes/new) */}
-          <br></br>
         </Route>
       </Switch>
     </div>

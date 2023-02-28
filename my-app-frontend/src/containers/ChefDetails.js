@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Recipe from "../components/Recipe.js"
 
 function ChefDetails () {
@@ -40,8 +40,10 @@ function ChefDetails () {
                     <button onClick={() => handleShowAll()} >v</button> 
                     {recipes}
                 </div>}
+                <Link to={`/chefs/${chef.id}/recipes/new`}>Add New Recipe for this Chef</Link>
         </div>
     )
 }
 
 export default ChefDetails;
+

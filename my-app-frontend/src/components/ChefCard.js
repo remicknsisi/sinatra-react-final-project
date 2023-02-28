@@ -17,7 +17,7 @@ function ChefCard ({ chef, onDeleteChef }) {
             <img className="chef-card-img" src={image}></img>
             <br></br>
             <h4>Years Cooking: {years_cooking} | Age: {age}</h4>
-            <Link to={`/chefs/${id}`}>Read More</Link>
+            <Link to={`/chefs/${id}`}>Learn More</Link>
             <br></br>
             <br></br>
             <button className="chef-btn" onClick={handleDeleteChef}>❌ Delete Chef</button>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 function NewRecipeForm ({ chefs, onSubmit }) {
 
@@ -8,7 +9,10 @@ function NewRecipeForm ({ chefs, onSubmit }) {
     const [newHours, setNewHours] = useState()
     const [newIngredients, setNewIngredients] = useState('')
     const [newCuisineType, setNewCuisineType] = useState('')
-    const [newChefId, setNewChefId] = useState(1)
+    // const [newChefId, setNewChefId] = useState(1)
+
+    const { chef_id } = useParams()
+    const chef = chefs.find(chef => chef.id == chef_id)
 
     function handleNameChange(e){
         setNewName(e.target.value)
@@ -28,9 +32,9 @@ function NewRecipeForm ({ chefs, onSubmit }) {
     function handleCuisineTypeChange(e){
         setNewCuisineType(e.target.value)
     }
-    function handleChefChange(e){
-        setNewChefId(e.target.value)
-    }
+    // function handleChefChange(e){
+    //     setNewChefId(e.target.value)
+    // }
 
     function handleSubmitRecipe(e){
         e.preventDefault()
@@ -41,12 +45,12 @@ function NewRecipeForm ({ chefs, onSubmit }) {
             image_url: newImage,
             hours: newHours,
             ingredients: newIngredients,
-            chef_id: newChefId,
+            chef_id: chef_id,
             cuisine_type: newCuisineType,
             isFavorited: false
         }
 
-        fetch(`http://localhost:9292/chefs/${newChefId}/recipes`, {
+        fetch(`http://localhost:9292/chefs/${chef_id}/recipes`, {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(
@@ -80,12 +84,13 @@ function NewRecipeForm ({ chefs, onSubmit }) {
                     <option value="main">Main</option>
                 </select>
                 <br></br>
-                Select Chef: <select value={newChefId} onChange={handleChefChange} >
+                By Chef: {chef.first_name} {chef.last_name}
+                <br></br>
+                {/* Select Chef: <select value={newChefId} onChange={handleChefChange} >
                     {chefs.map(chef => 
                         <option key={chef.id} value={chef.id}>{chef.first_name} {chef.last_name}</option>
                         )}
-                </select>
-                <p>If you are entering a recipe by a new chef, be sure to submit the chef in the Chef form first!</p>
+                </select> */}
                 <br></br>
                 <button type="submit">Create Recipe</button>
             </form>

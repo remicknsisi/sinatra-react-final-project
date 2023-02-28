@@ -5,16 +5,16 @@ import Filter from '../components/Filter.js'
 import Search from '../components/Search'
 
 
-function DisplayCards ({ search, setSearch, inRecipes, collectionData, selectedType, onDeleteRecipe, setRecipes, onNewSelection, onDeleteChef, onClickFavorite }) {
+function DisplayCards ({ search, setSearch, inRecipes, collectionData, selectedType, onNewSelection, onDeleteChef, recipes, chefs, setChefs, onDeleteRecipe, onClickFavorite }) {
     return (
         <div>
             {inRecipes ? 
             <>
                 <Filter selectedType={selectedType} onNewSelection={onNewSelection}/>
                 <div className="cards-container">
-                    {collectionData.map(recipe => {
+                    {recipes.map(recipe => {
                     return (
-                        <RecipeCard key={recipe.id} setRecipes={setRecipes} recipe={recipe} onDeleteRecipe={onDeleteRecipe} recipes={collectionData} onClickFavorite={onClickFavorite}/>
+                        <RecipeCard key={recipe.id} recipe={recipe} setChefs={setChefs} chefs={chefs} onDeleteRecipe={onDeleteRecipe} onClickFavorite={onClickFavorite}/>
                     )
                 })}
                 </div>

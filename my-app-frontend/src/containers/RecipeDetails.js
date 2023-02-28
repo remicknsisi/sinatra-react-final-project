@@ -7,10 +7,11 @@ function RecipeDetails () {
     const [recipe, setRecipe] = useState({
         reviews: []
     })
-    const { id } = useParams()
+
+    const { chef_id, id } = useParams()
 
     useEffect(() => {
-        fetch(`http://localhost:9292/recipes/${id}`)
+        fetch(`http://localhost:9292/chefs/${chef_id}/recipes/${id}`)
         .then(res => res.json())
         .then(recipeData => setRecipe(recipeData))
     }, []) 
@@ -26,7 +27,6 @@ function RecipeDetails () {
         const recipeWithUpdatedReviews = {...recipe, reviews: reviewsToDisplay}
         setRecipe(recipeWithUpdatedReviews)
     }
-
     function handlePostComment(newComment){
         const reviewsToDisplay = [...comments, newComment]
         const recipeWithUpdatedReviews = {...recipe, reviews: reviewsToDisplay}
@@ -42,27 +42,23 @@ function RecipeDetails () {
                 <h3>Hours to Prepare: {recipe.hours} | Average Rating: {'⭐'.repeat(Math.round(averageRating))}</h3>
                 <h2 className="ingredients-container">Ingredients:</h2>
                     <ul className="ingredients">
-                        {!recipe.ingredients ? console.log('Loading Ingredients...') : recipe.ingredients.split(', ').map(ingredient => {
+                        {!recipe.ingredients ? null : recipe.ingredients.split(', ').map(ingredient => {
                             return (<li>{ingredient}</li>)
                         })}
                     </ul>
                 <br></br>
                 <h2 >Instructions:</h2>
                     <ol type="1" className="instructions">
-                        {!recipe.instructions ? console.log('Loading Instructions...') : recipe.instructions.split('. ').map(step => {
+                        {!recipe.instructions ? null : recipe.instructions.split('. ').map(step => {
                             return(<li>{step}</li>)
                         })}
                     </ol>
                 <br></br>
                 <div className="reviews-container">
                     <h3 className="reviews-header">Reviews</h3>
-                    {!!recipe.reviews.length ? 
                     <>
                     {reviews}
                     </>
-                    :
-                    console.log('No reviews yet!')
-                    }
                 </div>
                 <NewCommentForm onPostComment={handlePostComment}/>
             </>
