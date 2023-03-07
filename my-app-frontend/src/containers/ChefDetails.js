@@ -54,4 +54,3 @@ function ChefDetails ({ onEditChefSubmit }) {
 }
 
 export default ChefDetails;
-

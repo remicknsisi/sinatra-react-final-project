@@ -7,7 +7,6 @@ function RecipeDetails () {
     const [recipe, setRecipe] = useState({
         reviews: []
     })
-
     const { chef_id, id } = useParams()
 
     useEffect(() => {
@@ -17,9 +16,7 @@ function RecipeDetails () {
     }, []) 
 
     const comments = recipe.reviews.map(review => review)
-
     const averageRating = recipe.reviews.map(review => review.rating).reduce((sum, value) => {return sum + value}, 0) / recipe.reviews.length
-
     const reviews = recipe.reviews.map(review => <Review onDeleteReview={handleDeleteReview} key={review.id} review={review}/>)
 
     function handleDeleteReview(deletedReview){

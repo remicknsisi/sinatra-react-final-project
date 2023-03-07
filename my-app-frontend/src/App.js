@@ -21,7 +21,7 @@ function App() {
     .then((chefData) => setChefs(chefData));
   }, [])
 
-  //Declaring constants to dictate displayed
+  //Declaring constants to dictate what is displayed on screen
   const recipes = chefs.flatMap(chef => chef.recipes)
   const reviews = chefs.flatMap(chef => chef.reviews)
   const recipesToDisplay = recipes.filter(recipe => {
