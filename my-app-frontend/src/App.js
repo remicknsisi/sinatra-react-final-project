@@ -21,6 +21,7 @@ function App() {
     .then((chefData) => setChefs(chefData));
   }, [])
 
+  //Declaring constants to dictate displayed
   const recipes = chefs.flatMap(chef => chef.recipes)
   const reviews = chefs.flatMap(chef => chef.reviews)
   const recipesToDisplay = recipes.filter(recipe => {
@@ -33,6 +34,7 @@ function App() {
     else if (chef.last_name.toLowerCase().includes(search)) return true;
   })
 
+  //Submissions updating in frontend
   function handleSubmitRecipe (updatedChef, id){
     const chefsWithUpdatedRecipes = chefs.map(chef => chef.id === updatedChef.id ? updatedChef : chef)
     setChefs(chefsWithUpdatedRecipes)
@@ -43,6 +45,7 @@ function App() {
     history.push(`/chefs/${newChefObj.id}`)
   }
 
+  //Deletions updating in frontend
   function handleDeleteChef(deletedChef){
       const chefsToDisplay = chefs.filter(chef => chef.id !== deletedChef.id)
       setChefs(chefsToDisplay)
@@ -55,10 +58,10 @@ function App() {
       setChefs(chefsWithUpdatedRecipes)
   }
 
+  //Handle other user interactions
   function handleNewSelection(type){
       setSelectedType(type)
     }
-
   function handleClickFavorite(updatedRecipe){
     const chef = chefs.find(chef => chef.id === updatedRecipe.chef_id)
     const chefUpdatedRecipes = chef.recipes.map(recipe => recipe.id === updatedRecipe.id ? updatedRecipe : recipe)
@@ -66,7 +69,6 @@ function App() {
     const chefsWithUpdatedRecipes = chefs.map(chef => chef.id === updatedChef.id ? updatedChef : chef)
     setChefs(chefsWithUpdatedRecipes)
   }
-
   function handleEditChefSubmit(updatedChef){
     const updatedChefs = chefs.map(chef => chef.id === updatedChef.id ? updatedChef : chef)
     setChefs(updatedChefs)
@@ -96,7 +98,7 @@ function App() {
           <br></br>
         </Route>
         <Route exact path="/chefs">
-            <DisplayCards search={search} setSearch={setSearch} inRecipes={false} collectionData={chefsToDisplay} onDeleteChef={handleDeleteChef}/>
+            <DisplayCards search={search} setSearch={setSearch} inRecipes={false} chefs={chefsToDisplay} onDeleteChef={handleDeleteChef}/>
         </Route>
         <Route exact path="/chefs/:id">
           <ChefDetails onEditChefSubmit={handleEditChefSubmit}/>

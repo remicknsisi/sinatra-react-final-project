@@ -12,7 +12,7 @@ As far as sources I used to accomplish building this app, please see below for c
 Recipes and images of recipes pulled from: 
 https://ourtableforseven.com/
 
-My lovely kitchen-esque background photo is from:
+My lovely checkered kitchen-esque background photo is from:
 https://pixabay.com/illustrations/plaid-picnic-plaid-pattern-5101876/
 
 Welcoming illustration on the home tab comes from:
@@ -24,3 +24,12 @@ https://the-toast.net/2014/09/04/eighteen-kinds-people-comment-recipe-blog/
 All chef bios are courtesy of Wikipedia.
 
 And lastly, my chef images are pulled from a variety of sources by Google image search:
+https://pbs.twimg.com/profile_images/1448696882746695683/Jp2_LEBL_400x400.jpg
+https://d14iv1hjmfkv57.cloudfront.net/site/ui/ask-ina-hero.jpg
+https://food.fnr.sndimg.com/content/dam/images/food/editorial/talent/bobby-flay/FN_Bobby-Flay-About.jpg.rend.hgtvcom.336.336.suffix/1457731967311.jpeg
+https://media.npr.org/assets/img/2011/10/07/paula-deen2_custom-3d914bbc856cf5740c256ecfda7762e9cc377f42-s1100-c50.jpg
+https://i.guim.co.uk/img/media/1988f5a3d0873bb81b670ce73d7afb9be153e7fd/0_155_3000_1800/master/3000.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=69ba3cf51a4f21e311f5b7376c6931a1
+https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4hmj926D5L0egBmg-7WOUSQn5lNpJjMzYdA&usqp=CAU
+https://pbs.twimg.com/profile_images/989486563758354432/2NBOn09O_400x400.jpg
+https://lumiere-a.akamaihd.net/v1/images/open-uri20150422-20810-f3qxzs_4923c203.jpeg?region=0,0,600,600
+https://alexguarnaschelli.com/wp-content/uploads/2021/10/about-hero-mobile.jpg

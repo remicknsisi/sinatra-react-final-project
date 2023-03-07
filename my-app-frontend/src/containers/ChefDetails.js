@@ -3,8 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import Recipe from "../components/Recipe.js"
 import EditChefForm from "../components/EditChefForm"
 
-
-function ChefDetails ({onEditChefSubmit}) {
+function ChefDetails ({ onEditChefSubmit }) {
     const [chef, setChef] = useState({
         recipes: []
     })

@@ -29,7 +29,6 @@ function RecipeCard ({ recipe, onDeleteRecipe, onClickFavorite, reviews }) {
                .then(updatedRecipe => onClickFavorite(updatedRecipe)
               )
       }
-//add edit function for another attribute(s) => add same func as for chefs 
 
     return (
         <div className="card">
