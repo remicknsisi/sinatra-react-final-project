@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import NewCommentForm from './NewCommentForm.js';
+import NewCommentForm from '../components/NewCommentForm.js';
 import Review from "../components/Review.js";
 
 function RecipeDetails () {

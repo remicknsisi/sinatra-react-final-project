@@ -5,8 +5,8 @@ import Home from "./components/Home.js"
 import DisplayCards from "./containers/DisplayCards.js";
 import ChefDetails from "./containers/ChefDetails.js";
 import RecipeDetails from "./containers/RecipeDetails.js";
-import NewRecipeForm from "./containers/NewRecipeForm"
-import NewChefForm from "./containers/NewChefForm"
+import NewRecipeForm from "./components/NewRecipeForm"
+import NewChefForm from "./components/NewChefForm"
 
 function App() {
   const [chefs, setChefs] = useState([])
